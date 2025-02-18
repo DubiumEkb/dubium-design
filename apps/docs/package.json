@@ -1,0 +1,52 @@
+{
+	"name": "@dubium/docs",
+	"private": true,
+	"version": "0.0.0",
+	"homepage": "https://dubiumekb.github.io/DubiumUI/",
+	"type": "module",
+	"author": "https://github.com/DubiumEkb",
+	"scripts": {
+		"clean:docs": "rimraf storybook-static",
+		"version:patch": "yarn version patch",
+		"version:minor": "yarn version minor",
+		"version:major": "yarn version major",
+		"dev": "storybook dev -p 6006",
+		"build": "yarn run clean:docs && STORYBOOK_BUILD=true storybook build --docs"
+	},
+	"dependencies": {
+		"@dubium/ui": "^0.0.5",
+		"react": "^19.0.0",
+		"react-dom": "^19.0.0"
+	},
+	"devDependencies": {
+		"@chromatic-com/storybook": "^3.2.4",
+		"@eslint/js": "^9.19.0",
+		"@storybook/addon-essentials": "^8.5.4",
+		"@storybook/addon-interactions": "^8.5.4",
+		"@storybook/addon-onboarding": "^8.5.4",
+		"@storybook/blocks": "^8.5.4",
+		"@storybook/react": "^8.5.4",
+		"@storybook/react-vite": "^8.5.4",
+		"@storybook/test": "^8.5.4",
+		"@types/node": "^22.13.1",
+		"@types/react": "^19.0.8",
+		"@types/react-dom": "^19.0.3",
+		"@vitejs/plugin-react": "^4.3.4",
+		"eslint": "^9.19.0",
+		"eslint-plugin-react-hooks": "^5.0.0",
+		"eslint-plugin-react-refresh": "^0.4.18",
+		"eslint-plugin-storybook": "^0.11.2",
+		"globals": "^15.14.0",
+		"rimraf": "^6.0.1",
+		"storybook": "^8.5.4",
+		"typescript": "~5.7.2",
+		"typescript-eslint": "^8.22.0",
+		"vite": "^6.1.0",
+		"vite-plugin-gh-pages": "^1.0.1"
+	},
+	"eslintConfig": {
+		"extends": [
+			"plugin:storybook/recommended"
+		]
+	}
+}

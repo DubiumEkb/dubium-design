@@ -1,0 +1,1 @@
+# @dubium/tsconfig — конфигурация TypeScript.

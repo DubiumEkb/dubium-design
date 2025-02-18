@@ -1,0 +1,25 @@
+{
+	"compilerOptions": {
+		"outDir": "./dist",
+		"declaration": true,
+		"declarationMap": false,
+		"sourceMap": false,
+		"rootDir": "./src",
+		"strict": true,
+		"module": "ESNext",
+		"target": "ESNext",
+		"esModuleInterop": true,
+		"skipLibCheck": true,
+		"forceConsistentCasingInFileNames": true,
+		"resolveJsonModule": true,
+		"moduleResolution": "node",
+		"jsx": "react-jsx",
+		"typeRoots": ["./node_modules/@types", "./src/types"],
+		"baseUrl": "./",
+		"paths": {
+			"@/*": ["src/*"]
+		}
+	},
+	"include": ["src/components/**/*", "src/index.ts", "src/types/**/*"],
+	"exclude": ["node_modules", "dist", "src/main.ts", "src/setupTests.ts"]
+}

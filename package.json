@@ -1,0 +1,27 @@
+{
+	"name": "dubium_design",
+	"homepage": "https://dubiumekb.github.io/DubiumUI/",
+	"private": true,
+	"scripts": {
+		"build": "turbo build",
+		"dev": "turbo dev",
+		"lint": "turbo lint",
+		"format": "prettier --write \"**/*.{ts,tsx,md}\"",
+		"version:patch": "yarn version patch",
+		"version:minor": "yarn version minor",
+		"version:major": "yarn version major"
+	},
+	"devDependencies": {
+		"prettier": "^3.5.0",
+		"turbo": "^2.4.1",
+		"typescript": "5.7.3"
+	},
+	"engines": {
+		"node": ">=18"
+	},
+	"packageManager": "yarn@1.22.22",
+	"workspaces": [
+		"apps/*",
+		"packages/*"
+	]
+}
