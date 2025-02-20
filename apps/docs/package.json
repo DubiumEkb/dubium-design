@@ -14,7 +14,7 @@
 		"build": "yarn run clean:docs && STORYBOOK_BUILD=true storybook build --docs"
 	},
 	"dependencies": {
-		"@dubium/ui": "^0.0.5",
+		"@dubium/ui": "*",
 		"react": "^19.0.0",
 		"react-dom": "^19.0.0"
 	},
