@@ -1,11 +1,16 @@
 {
 	"name": "@dubium/ui",
 	"private": false,
-	"version": "0.0.9",
+	"version": "0.0.10",
 	"type": "module",
 	"homepage": "https://dubiumekb.github.io/DubiumUI/",
-	"main": "./dist/dubium_ui.js",
-	"module": "./dist/dubium_ui.js",
+	"bugs": {
+		"url": "https://github.com/DubiumEkb/dubium-design/issues"
+	},
+	"repository": "https://github.com/DubiumEkb/dubium-design",
+	"main": "./dist/dd.umd.js",
+	"module": "./dist/dd.es.js",
+	"types": "./dist/dd.es.d.ts",
 	"files": [
 		"dist",
 		"README.md",
@@ -22,7 +27,9 @@
 	],
 	"author": "https://github.com/DubiumEkb",
 	"license": "MIT",
-	"sideEffects": false,
+	"sideEffects": [
+		"./dist/ui.css"
+	],
 	"scripts": {
 		"clean:dist": "rimraf dist",
 		"dev": "vite",
@@ -68,6 +75,7 @@
 	},
 	"exports": {
 		".": {
+			"types": "./dist/dd.es.d.ts",
 			"import": "./dist/dd.es.js",
 			"require": "./dist/dd.umd.js"
 		},
