@@ -1,13 +1,4 @@
-# Turborepo
+# Dubium Design
 
-## Dev
-
-```bash
-yarn run dev
-```
-
-## Build
-
-```bash
-yarn run build
-```
+[![NPM version][npm-image]][npm-url]
+[![NPM downloads][download-image]][download-url]
