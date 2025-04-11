@@ -1,0 +1,60 @@
+{
+	"name": "@dubium/eslint-config",
+	"private": false,
+	"version": "1.0.2",
+	"type": "module",
+	"main": "./config/index.js",
+	"exports": {
+		".": "./config/index.js",
+		"./base": "./config/base.js",
+		"./react": "./config/react.js",
+		"./typescript": "./config/typescript.js"
+	},
+	"files": [
+		"config",
+		"README.md",
+		"LICENSE"
+	],
+	"description": "",
+	"keywords": [
+		"eslint",
+		"eslintconfig"
+	],
+	"homepage": "https://github.com/DubiumEkb/dubium-design/",
+	"bugs": {
+		"url": "https://github.com/DubiumEkb/dubium-design/issues"
+	},
+	"repository": "https://github.com/DubiumEkb/dubium-design",
+	"author": "https://github.com/DubiumEkb",
+	"license": "MIT",
+	"scripts": {
+		"dev": "vite",
+		"lint:inspect": "npx eslint --inspect-config",
+		"lint": "eslint --no-cache .",
+		"lint:write": "eslint --debug --no-cache src/",
+		"build": "tsc -b && vite build",
+		"preview": "vite preview"
+	},
+	"peerDependencies": {
+		"eslint": "^9.0.0"
+	},
+	"dependencies": {
+		"react": ">=19.1.0",
+		"react-dom": "^19.1.0"
+	},
+	"devDependencies": {
+		"@eslint/js": "^9.24.0",
+		"@types/react": "^19.1.0",
+		"@types/react-dom": "^19.1.2",
+		"@typescript-eslint/eslint-plugin": "^8.29.1",
+		"@typescript-eslint/parser": "^8.29.1",
+		"@vitejs/plugin-react-swc": "^3.8.1",
+		"eslint": ">=9.24.0",
+		"eslint-plugin-react-hooks": "^5.2.0",
+		"eslint-plugin-react-refresh": "^0.4.19",
+		"globals": "^16.0.0",
+		"typescript": "^5.8.3",
+		"typescript-eslint": "^8.29.1",
+		"vite": "^6.2.6"
+	}
+}

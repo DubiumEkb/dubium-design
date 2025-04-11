@@ -1,1 +1,0 @@
-# @dubium/eslint-config — конфигурация ESLint.
