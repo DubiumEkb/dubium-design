@@ -3,7 +3,7 @@ import tsPlugin from "@typescript-eslint/eslint-plugin";
 
 export const typescript = {
 	name: "@dubium/eslint-config/typescript",
-	files: ["**/*.{ts,tsx}"],
+	files: ["**/*.{ts,tsx}", "**/*.d.ts"],
 	languageOptions: {
 		parser: tsParser,
 		parserOptions: {
