@@ -13,9 +13,6 @@ export const base = {
 		},
 	},
 	rules: {
-		// "no-console": "warn",
-		// strict: ["error", "global"],
-
 		/**
 		 * Требует возврата значения в коллбэках методов массивов
 		 * Enforces return statements in callbacks of array methods
