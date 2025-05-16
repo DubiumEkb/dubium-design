@@ -1,4 +1,4 @@
-import{f as o}from"./index-iZ8NAl3x.js";import{H as d}from"./Header-D2zXz9NM.js";import"./jsx-runtime-D_zvdyIk.js";const i={title:"Example/Header",component:d,tags:["autodocs"],parameters:{layout:"fullscreen"},args:{onLogin:o(),onLogout:o(),onCreateAccount:o()}},e={args:{user:{name:"Jane Doe"}}},r={};var a,s,t;e.parameters={...e.parameters,docs:{...(a=e.parameters)==null?void 0:a.docs,source:{originalSource:`{
+import{f as o}from"./index-BZkcKs8Z.js";import{H as d}from"./Header-D2zXz9NM.js";import"./jsx-runtime-D_zvdyIk.js";const i={title:"Example/Header",component:d,tags:["autodocs"],parameters:{layout:"fullscreen"},args:{onLogin:o(),onLogout:o(),onCreateAccount:o()}},e={args:{user:{name:"Jane Doe"}}},r={};var a,s,t;e.parameters={...e.parameters,docs:{...(a=e.parameters)==null?void 0:a.docs,source:{originalSource:`{
   args: {
     user: {
       name: 'Jane Doe'
