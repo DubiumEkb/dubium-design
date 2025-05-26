@@ -13,3 +13,7 @@ or with Yarn:
 ```bash
 yarn add @dubium/ui
 ```
+
+## TODO
+
+- Убрать Framer Motion

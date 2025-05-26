@@ -1,7 +1,7 @@
 {
 	"name": "@dubium/ui",
 	"private": false,
-	"version": "0.0.10",
+	"version": "0.0.11",
 	"type": "module",
 	"homepage": "https://github.com/DubiumEkb/dubium-design/",
 	"bugs": {
@@ -42,6 +42,7 @@
 		"version:major": "yarn version major"
 	},
 	"dependencies": {
+		"classnames": "^2.5.1",
 		"prettier": "^3.5.3",
 		"react": ">=19.1.0",
 		"react-dom": "^19.1.0",

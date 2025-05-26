@@ -28,6 +28,7 @@
 		"version:major": "yarn version major"
 	},
 	"devDependencies": {
+		"@types/node": "^22.15.21",
 		"syncpack": "^13.0.3",
 		"turbo": "^2.5.0"
 	},
@@ -38,6 +39,8 @@
 	"workspaces": [
 		"./apps/*",
 		"./packages/*"
-	]
+	],
+	"dependencies": {
+		"framer-motion": "^12.12.2"
+	}
 }
- 
