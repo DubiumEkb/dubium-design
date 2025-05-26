@@ -9,15 +9,36 @@ const meta: Meta<typeof Button> = {
 	component: Button,
 	tags: ["autodocs"],
 	argTypes: {
-		onClick: { action: "clicked" },
-		className: { control: "text" },
+		onClick: {
+			action: "clicked",
+			description: "Функция, вызываемая при клике на кнопку.",
+		},
+		className: {
+			control: "text",
+			description: "Дополнительный CSS-класс.",
+		},
 		type: {
 			control: { type: "select" },
 			options: ["button", "submit", "reset"],
+			description: "HTML-тип кнопки.",
 		},
-		role: { control: "text" },
-		disabled: { control: "boolean" },
-		stopPropagation: { control: "boolean" },
+		role: {
+			control: "text",
+			description: "ARIA-роль кнопки (если требуется).",
+		},
+		disabled: {
+			control: "boolean",
+			description: "Отключает кнопку.",
+		},
+		stopPropagation: {
+			control: "boolean",
+			description: "Останавливает всплытие события клика.",
+		},
+	},
+	args: {
+		type: "button",
+		disabled: false,
+		stopPropagation: false,
 	},
 };
 
@@ -27,9 +48,6 @@ type Story = StoryObj<typeof Button>;
 export const Default: Story = {
 	args: {
 		children: "Click me",
-		type: "button",
-		disabled: false,
-		stopPropagation: false,
 	},
 };
 
