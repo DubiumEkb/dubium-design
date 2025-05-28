@@ -1,0 +1,17 @@
+{
+	"compilerOptions": {
+		"declaration": true,
+		"declarationDir": "./dist",
+		"outDir": "./dist",
+		"module": "ESNext",
+		"target": "ESNext",
+		"moduleResolution": "Node",
+		"jsx": "react-jsx",
+		"esModuleInterop": true,
+		"skipLibCheck": true,
+		"strict": true,
+		"types": []
+	},
+	"include": ["src/hooks"],
+	"exclude": ["node_modules", "dist", "src/main.tsx", "src/App.tsx"]
+}
