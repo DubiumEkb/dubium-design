@@ -1,7 +1,7 @@
 {
 	"name": "@dubium/hooks",
 	"private": false,
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"type": "module",
 	"homepage": "https://github.com/DubiumEkb/dubium-design/",
 	"bugs": {
@@ -62,13 +62,53 @@
 			"types": "./dist/index.d.ts",
 			"import": "./dist/index.js"
 		},
+		"./useClickOutside": {
+			"types": "./dist/useClickOutside.d.ts",
+			"import": "./dist/useClickOutside.js"
+		},
 		"./useCombinedRefs": {
 			"types": "./dist/useCombinedRefs.d.ts",
 			"import": "./dist/useCombinedRefs.js"
 		},
+		"./useCounter": {
+			"types": "./dist/useCounter.d.ts",
+			"import": "./dist/useCounter.js"
+		},
 		"./useDebounce": {
 			"types": "./dist/useDebounce.d.ts",
 			"import": "./dist/useDebounce.js"
+		},
+		"./useEventListener": {
+			"types": "./dist/useEventListener.d.ts",
+			"import": "./dist/useEventListener.js"
+		},
+		"./useIntersectionObserver": {
+			"types": "./dist/useIntersectionObserver.d.ts",
+			"import": "./dist/useIntersectionObserver.js"
+		},
+		"./useMountEffect": {
+			"types": "./dist/useMountEffect.d.ts",
+			"import": "./dist/useMountEffect.js"
+		},
+		"./useMove": {
+			"types": "./dist/useMove.d.ts",
+			"import": "./dist/useMove.js"
+		},
+		"./usePinInput": {
+			"types": "./dist/usePinInput.d.ts",
+			"import": "./dist/usePinInput.js"
+		},
+		"./usePrevious": {
+			"types": "./dist/usePrevious.d.ts",
+			"import": "./dist/usePrevious.js"
+		},
+		"./useUnmountEffect": {
+			"types": "./dist/useUnmountEffect.d.ts",
+			"import": "./dist/useUnmountEffect.js"
+		},
+		"./useUpdateEffect": {
+			"types": "./dist/useUpdateEffect.d.ts",
+			"import": "./dist/useUpdateEffect.js"
 		}
 	}
 }
