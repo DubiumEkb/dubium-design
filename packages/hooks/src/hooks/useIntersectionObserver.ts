@@ -17,10 +17,10 @@ import { useState, useEffect, RefObject, useMemo } from "react";
  * return <div ref={ref}>{isVisible ? "Видим" : "Не видим"}</div>;
  * ```
  */
-export function useIntersectionObserver(
+export const useIntersectionObserver = (
 	ref: RefObject<Element>,
 	options: IntersectionObserverInit = {}
-): boolean {
+): boolean => {
 	const [isVisible, setIsVisible] = useState(false);
 
 	// Стабилизируем опции: рекомендуем вызывать хук с мемоизированными опциями
@@ -49,4 +49,4 @@ export function useIntersectionObserver(
 	}, [ref.current, memoizedOptions]);
 
 	return isVisible;
-}
+};

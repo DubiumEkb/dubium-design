@@ -1,4 +1,6 @@
 export { useDebounce } from "./useDebounce";
+export { useWindowSize } from "./useWindowSize";
+export { useThrottle } from "./useThrottle";
 export { usePinInput } from "./usePinInput";
 export { useCombinedRefs } from "./useCombinedRefs";
 export { usePrevious } from "./usePrevious";
@@ -8,3 +10,7 @@ export { useUnmountEffect } from "./useUnmountEffect";
 export { useClickOutside } from "./useClickOutside";
 export { useCounter } from "./useCounter";
 export { useIntersectionObserver } from "./useIntersectionObserver";
+export { useEventListener } from "./useEventListener";
+export { useHover } from "./useHover";
+export { useMove } from "./useMove";
+export { useNetworkState } from "./useNetworkState";

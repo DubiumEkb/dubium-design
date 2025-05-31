@@ -29,7 +29,7 @@ import { useState, useEffect } from "react";
  *   );
  * }, [items, debouncedInput]);
  */
-export function useDebounce<T>(value: T, delay: number): T {
+export const useDebounce = <T>(value: T, delay: number): T => {
 	const [debouncedValue, setDebouncedValue] = useState(value);
 
 	useEffect(() => {
@@ -45,4 +45,4 @@ export function useDebounce<T>(value: T, delay: number): T {
 	}, [value, delay]); // Эффект зависит от значения и задержки
 
 	return debouncedValue;
-}
+};

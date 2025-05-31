@@ -51,10 +51,10 @@ export interface UseMoveReturn extends Position {
  * // Чтобы отобразить значение от 0 до 100:
  * const percent = Math.round((x ?? 0) * 100);
  */
-export function useMove({
+export const useMove = ({
 	mode = "both",
 	initialValue = { x: 0, y: 0 },
-}: UseMoveParams = {}): UseMoveReturn {
+}: UseMoveParams = {}): UseMoveReturn => {
 	const [positions, setPositions] = useState<Position>(initialValue);
 	const [active, setActive] = useState(false);
 	const ref = useRef<HTMLElement | null>(null);
@@ -189,4 +189,4 @@ export function useMove({
 	}, [initialValue]);
 
 	return { ref, ...positions, active, reset };
-}
+};

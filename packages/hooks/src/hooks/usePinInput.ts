@@ -131,7 +131,7 @@ export interface PinInputFieldProps
  * @param props Настройки хука
  * @returns Объект с полями ввода, методом очистки и флагом фокуса
  */
-export function usePinInput({
+export const usePinInput = ({
 	values: valuesProp,
 	onChange: onChangeProp,
 	onComplete,
@@ -144,7 +144,7 @@ export function usePinInput({
 	disabled = false,
 	mask = false,
 	error = false,
-}: UsePinInputProps = {}) {
+}: UsePinInputProps = {}) => {
 	const isControlled = valuesProp !== undefined;
 	const [valuesState, setValuesState] = useState(defaultValues);
 	const [focusedIndex, setFocusedIndex] = useState(-1);
@@ -305,7 +305,7 @@ export function usePinInput({
 	}));
 
 	return { fields, clear, isFocused: hasFocus };
-}
+};
 
 /**
  * Возвращаемый результат `usePinInput`.

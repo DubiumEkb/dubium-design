@@ -15,7 +15,9 @@ type Target =
 	| "document"
 	| string
 	| EventTarget
+	| HTMLElement
 	| RefObject<EventTarget>
+	| RefObject<HTMLElement | null>
 	| null;
 
 /**
