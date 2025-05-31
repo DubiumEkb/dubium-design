@@ -1,130 +1,130 @@
 {
-  "name": "@dubium/hooks",
-  "private": false,
-  "version": "0.0.4",
-  "type": "module",
-  "homepage": "https://github.com/DubiumEkb/dubium-design/",
-  "bugs": {
-    "url": "https://github.com/DubiumEkb/dubium-design/issues"
-  },
-  "repository": "https://github.com/DubiumEkb/dubium-design",
-  "main": "./dist/hooks.umd.js",
-  "module": "./dist/hooks.es.js",
-  "types": "./dist/index.d.ts",
-  "files": [
-    "dist",
-    "README.md",
-    "LICENSE"
-  ],
-  "description": "A lightweight and customizable UI component library for React, designed to streamline the development of modern web applications. @dubium/ui includes an array of responsive, accessible, and reusable UI components, optimized for performance and ease of use.",
-  "keywords": [
-    "react",
-    "hooks",
-    "design-system",
-    "library",
-    "frontend"
-  ],
-  "author": "https://github.com/DubiumEkb",
-  "license": "MIT",
-  "sideEffects": false,
-  "scripts": {
-    "clean:dist": "rimraf dist",
-    "dev": "vite",
-    "generate:exports": "node generate-exports.mjs",
-    "build": "yarn run clean:dist && tsc -b && yarn run generate:exports",
-    "lint": "eslint .",
-    "preview": "vite preview",
-    "version:push": "yarn publish --access=public",
-    "version:patch": "yarn version patch",
-    "version:minor": "yarn version minor",
-    "version:major": "yarn version major"
-  },
-  "peerDependencies": {
-    "react": ">=16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0",
-    "react-dom": ">=16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0"
-  },
-  "devDependencies": {
-    "@eslint/js": "^9.25.0",
-    "@types/react": "^19.1.2",
-    "@types/react-dom": "^19.1.2",
-    "@vitejs/plugin-react-swc": "^3.9.0",
-    "eslint": "^9.25.0",
-    "eslint-plugin-react-hooks": "^5.2.0",
-    "eslint-plugin-react-refresh": "^0.4.19",
-    "globals": "^16.0.0",
-    "rimraf": "^6.0.1",
-    "typescript": "~5.8.3",
-    "typescript-eslint": "^8.30.1",
-    "vite": "^6.3.5"
-  },
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
-    },
-    "./useClickOutside": {
-      "types": "./dist/useClickOutside.d.ts",
-      "import": "./dist/useClickOutside.js"
-    },
-    "./useCombinedRefs": {
-      "types": "./dist/useCombinedRefs.d.ts",
-      "import": "./dist/useCombinedRefs.js"
-    },
-    "./useCounter": {
-      "types": "./dist/useCounter.d.ts",
-      "import": "./dist/useCounter.js"
-    },
-    "./useDebounce": {
-      "types": "./dist/useDebounce.d.ts",
-      "import": "./dist/useDebounce.js"
-    },
-    "./useEventListener": {
-      "types": "./dist/useEventListener.d.ts",
-      "import": "./dist/useEventListener.js"
-    },
-    "./useHover": {
-      "types": "./dist/useHover.d.ts",
-      "import": "./dist/useHover.js"
-    },
-    "./useIntersectionObserver": {
-      "types": "./dist/useIntersectionObserver.d.ts",
-      "import": "./dist/useIntersectionObserver.js"
-    },
-    "./useMountEffect": {
-      "types": "./dist/useMountEffect.d.ts",
-      "import": "./dist/useMountEffect.js"
-    },
-    "./useMove": {
-      "types": "./dist/useMove.d.ts",
-      "import": "./dist/useMove.js"
-    },
-    "./useNetworkState": {
-      "types": "./dist/useNetworkState.d.ts",
-      "import": "./dist/useNetworkState.js"
-    },
-    "./usePinInput": {
-      "types": "./dist/usePinInput.d.ts",
-      "import": "./dist/usePinInput.js"
-    },
-    "./usePrevious": {
-      "types": "./dist/usePrevious.d.ts",
-      "import": "./dist/usePrevious.js"
-    },
-    "./useThrottle": {
-      "types": "./dist/useThrottle.d.ts",
-      "import": "./dist/useThrottle.js"
-    },
-    "./useUnmountEffect": {
-      "types": "./dist/useUnmountEffect.d.ts",
-      "import": "./dist/useUnmountEffect.js"
-    },
-    "./useUpdateEffect": {
-      "types": "./dist/useUpdateEffect.d.ts",
-      "import": "./dist/useUpdateEffect.js"
-    },
-    "./useWindowSize": {
-      "types": "./dist/useWindowSize.d.ts",
-      "import": "./dist/useWindowSize.js"
-    }
-  }
+	"name": "@dubium/hooks",
+	"private": false,
+	"version": "0.0.5",
+	"type": "module",
+	"homepage": "https://github.com/DubiumEkb/dubium-design/",
+	"bugs": {
+		"url": "https://github.com/DubiumEkb/dubium-design/issues"
+	},
+	"repository": "https://github.com/DubiumEkb/dubium-design",
+	"main": "./dist/hooks.umd.js",
+	"module": "./dist/hooks.es.js",
+	"types": "./dist/index.d.ts",
+	"files": [
+		"dist",
+		"README.md",
+		"LICENSE"
+	],
+	"description": "A lightweight and customizable UI component library for React, designed to streamline the development of modern web applications. @dubium/ui includes an array of responsive, accessible, and reusable UI components, optimized for performance and ease of use.",
+	"keywords": [
+		"react",
+		"hooks",
+		"design-system",
+		"library",
+		"frontend"
+	],
+	"author": "https://github.com/DubiumEkb",
+	"license": "MIT",
+	"sideEffects": false,
+	"scripts": {
+		"clean:dist": "rimraf dist",
+		"dev": "vite",
+		"generate:exports": "node generate-exports.mjs",
+		"build": "yarn run clean:dist && tsc -b && yarn run generate:exports",
+		"lint": "eslint .",
+		"preview": "vite preview",
+		"version:push": "yarn publish --access=public",
+		"version:patch": "yarn version patch",
+		"version:minor": "yarn version minor",
+		"version:major": "yarn version major"
+	},
+	"peerDependencies": {
+		"react": ">=16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0",
+		"react-dom": ">=16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0"
+	},
+	"devDependencies": {
+		"@eslint/js": "^9.25.0",
+		"@types/react": "^19.1.2",
+		"@types/react-dom": "^19.1.2",
+		"@vitejs/plugin-react-swc": "^3.9.0",
+		"eslint": "^9.25.0",
+		"eslint-plugin-react-hooks": "^5.2.0",
+		"eslint-plugin-react-refresh": "^0.4.19",
+		"globals": "^16.0.0",
+		"rimraf": "^6.0.1",
+		"typescript": "~5.8.3",
+		"typescript-eslint": "^8.30.1",
+		"vite": "^6.3.5"
+	},
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.js"
+		},
+		"./useClickOutside": {
+			"types": "./dist/useClickOutside.d.ts",
+			"import": "./dist/useClickOutside.js"
+		},
+		"./useCombinedRefs": {
+			"types": "./dist/useCombinedRefs.d.ts",
+			"import": "./dist/useCombinedRefs.js"
+		},
+		"./useCounter": {
+			"types": "./dist/useCounter.d.ts",
+			"import": "./dist/useCounter.js"
+		},
+		"./useDebounce": {
+			"types": "./dist/useDebounce.d.ts",
+			"import": "./dist/useDebounce.js"
+		},
+		"./useEventListener": {
+			"types": "./dist/useEventListener.d.ts",
+			"import": "./dist/useEventListener.js"
+		},
+		"./useHover": {
+			"types": "./dist/useHover.d.ts",
+			"import": "./dist/useHover.js"
+		},
+		"./useIntersectionObserver": {
+			"types": "./dist/useIntersectionObserver.d.ts",
+			"import": "./dist/useIntersectionObserver.js"
+		},
+		"./useMountEffect": {
+			"types": "./dist/useMountEffect.d.ts",
+			"import": "./dist/useMountEffect.js"
+		},
+		"./useMove": {
+			"types": "./dist/useMove.d.ts",
+			"import": "./dist/useMove.js"
+		},
+		"./useNetworkState": {
+			"types": "./dist/useNetworkState.d.ts",
+			"import": "./dist/useNetworkState.js"
+		},
+		"./usePinInput": {
+			"types": "./dist/usePinInput.d.ts",
+			"import": "./dist/usePinInput.js"
+		},
+		"./usePrevious": {
+			"types": "./dist/usePrevious.d.ts",
+			"import": "./dist/usePrevious.js"
+		},
+		"./useThrottle": {
+			"types": "./dist/useThrottle.d.ts",
+			"import": "./dist/useThrottle.js"
+		},
+		"./useUnmountEffect": {
+			"types": "./dist/useUnmountEffect.d.ts",
+			"import": "./dist/useUnmountEffect.js"
+		},
+		"./useUpdateEffect": {
+			"types": "./dist/useUpdateEffect.d.ts",
+			"import": "./dist/useUpdateEffect.js"
+		},
+		"./useWindowSize": {
+			"types": "./dist/useWindowSize.d.ts",
+			"import": "./dist/useWindowSize.js"
+		}
+	}
 }
