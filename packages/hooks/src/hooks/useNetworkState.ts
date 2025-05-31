@@ -2,22 +2,50 @@ import { useState } from "react";
 import { useEventListener } from "./useEventListener";
 
 /**
- * Тип состояния сети, отражающий свойства NetworkInformation и статус онлайн.
+ * Упрощённый тип объекта NetworkInformation, представляющий свойства
+ * и методы для отслеживания параметров сетевого соединения.
+ * Наследует EventTarget, чтобы поддерживать подписку на события 'change'.
+ */
+type NetworkInformationLite = EventTarget & {
+	/** Пропускная способность соединения в мегабитах в секунду */
+	readonly downlink: number;
+	/** Максимальная пропускная способность (если доступна) */
+	readonly downlinkMax?: number;
+	/** Эффективный тип соединения */
+	readonly effectiveType: "slow-2g" | "2g" | "3g" | "4g";
+	/** Оценка задержки в миллисекундах */
+	readonly rtt: number;
+	/** Режим экономии трафика */
+	readonly saveData: boolean;
+	/** Тип соединения */
+	readonly type:
+		| "bluetooth"
+		| "cellular"
+		| "ethernet"
+		| "none"
+		| "wifi"
+		| "wimax"
+		| "other"
+		| "unknown";
+};
+
+/**
+ * Интерфейс, описывающий текущее состояние сети и параметры соединения.
  */
 export interface NetworkState {
-	/** Онлайн статус браузера */
+	/** Флаг онлайн статуса браузера (true если есть сеть) */
 	online: boolean;
-	/** Оценочная пропускная способность в мегабитах в секунду */
+	/** Текущая пропускная способность в мегабитах в секунду, либо null */
 	downlink: number | null;
-	/** Максимальная пропускная способность в мегабитах в секунду */
+	/** Максимальная пропускная способность, либо null */
 	downlinkMax: number | null;
-	/** Эффективный тип соединения ('slow-2g', '2g', '3g', '4g') */
+	/** Эффективный тип соединения, либо null */
 	effectiveType: "slow-2g" | "2g" | "3g" | "4g" | null;
-	/** Оцененная задержка (round-trip time) в миллисекундах */
+	/** Оценка задержки в миллисекундах, либо null */
 	rtt: number | null;
-	/** Запрос режима экономии трафика */
+	/** Режим экономии трафика, либо null */
 	saveData: boolean | null;
-	/** Тип соединения ('bluetooth', 'cellular', 'ethernet', 'none', 'wifi', 'wimax', 'other', 'unknown') */
+	/** Тип соединения, либо null */
 	type:
 		| "bluetooth"
 		| "cellular"
@@ -30,31 +58,38 @@ export interface NetworkState {
 		| null;
 }
 
-interface Navigator {
-	readonly connection?: NetworkState;
-}
-
 /**
- * Хук для получения текущего состояния сети и параметров соединения.
+ * React-хук для получения актуального состояния сети и параметров соединения.
  *
- * @returns Объект состояния сети {@link NetworkState}
+ * Отслеживает статус онлайн/оффлайн, а также свойства объекта
+ * navigator.connection (если он доступен).
+ * Подписывается на события изменения статуса сети и параметров соединения.
+ *
+ * @returns Текущий объект состояния сети {@link NetworkState}
+ *
+ * @example
+ * ```tsx
+ * const network = useNetworkState();
+ * console.log(network.online);
+ * ```
  */
 export const useNetworkState = (): NetworkState => {
-	const getNetworkInformation = (): NetworkState => {
-		const connection = (
-			navigator as Navigator & { connection?: NetworkState }
-		).connection;
+	// Получаем объект соединения с проверкой наличия
+	const connection =
+		typeof navigator !== "undefined" && "connection" in navigator
+			? (navigator.connection as NetworkInformationLite)
+			: null;
 
-		return {
-			online: typeof navigator !== "undefined" ? navigator.onLine : false,
-			downlink: connection?.downlink ?? null,
-			downlinkMax: connection?.downlinkMax ?? null,
-			effectiveType: connection?.effectiveType ?? null,
-			rtt: connection?.rtt ?? null,
-			saveData: connection?.saveData ?? null,
-			type: connection?.type ?? null,
-		};
-	};
+	// Функция для получения текущих данных о сети
+	const getNetworkInformation = (): NetworkState => ({
+		online: typeof navigator !== "undefined" ? navigator.onLine : false,
+		downlink: connection?.downlink ?? null,
+		downlinkMax: connection?.downlinkMax ?? null,
+		effectiveType: connection?.effectiveType ?? null,
+		rtt: connection?.rtt ?? null,
+		saveData: connection?.saveData ?? null,
+		type: connection?.type ?? null,
+	});
 
 	const [networkState, setNetworkState] = useState<NetworkState>(
 		getNetworkInformation
@@ -64,6 +99,7 @@ export const useNetworkState = (): NetworkState => {
 		setNetworkState(getNetworkInformation());
 	};
 
+	// Подписываемся на события изменения статуса сети
 	useEventListener({
 		target: window,
 		type: "online",
@@ -76,8 +112,9 @@ export const useNetworkState = (): NetworkState => {
 		listener: updateNetworkState,
 	});
 
+	// Подписываемся на изменения параметров соединения
 	useEventListener({
-		target: typeof navigator !== "undefined" ? navigator.connection : null,
+		target: connection,
 		type: "change",
 		listener: updateNetworkState,
 	});
