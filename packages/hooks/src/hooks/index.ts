@@ -14,3 +14,4 @@ export { useEventListener } from "./useEventListener";
 export { useHover } from "./useHover";
 export { useMove } from "./useMove";
 export { useNetworkState } from "./useNetworkState";
+export { useVirtualList } from "./useVirtualList";

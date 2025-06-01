@@ -1,20 +1,19 @@
 import {
 	forwardRef,
-	memo,
 	useEffect,
+	useId,
 	useMemo,
 	useRef,
 	type ChangeEvent,
 	type FocusEvent,
 	type ForwardedRef,
+	type InputHTMLAttributes,
 	type KeyboardEvent,
 	type ReactNode,
 } from "react";
 import "./Input.scss";
 import classNames from "classnames";
-// TODO: Сделать нормальный импорт к пакету
-// TODO: Сделать нормальные стили
-import { useCombinedRefs } from "./useCombinedRefs";
+import { useCombinedRefs } from "@dubium/hooks";
 
 type InputType =
 	| "text"
@@ -36,7 +35,7 @@ type InputModeType =
 	| "search"
 	| undefined;
 
-interface InputProps {
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 	/**
 	 * Опциональная иконка для отображения внутри поля ввода
 	 *
@@ -209,161 +208,159 @@ interface InputProps {
  * @see {@link InputProps} для детального описания всех доступных свойств
  */
 
-export const Input = memo(
-	forwardRef<HTMLInputElement, InputProps>(
-		(
-			{
-				icon,
-				name,
-				type = "text",
-				label,
-				value,
-				onChange,
-				onInput,
-				onBlur,
-				onFocus,
-				placeholder,
-				required = false,
-				error = false,
-				disabled = false,
-				inputMode,
-				enterKeyHint = "enter",
-				autoFocus = false,
-				onKeyDown,
-				scrollIntoViewOnFocus = true,
-			},
-			ref: ForwardedRef<HTMLInputElement>
-		) => {
-			const localRef = useRef<HTMLInputElement>(null);
-			const combinedRef = useCombinedRefs(ref, localRef);
+export const Input = forwardRef<HTMLInputElement, InputProps>(
+	(
+		{
+			icon,
+			name,
+			type = "text",
+			label,
+			value,
+			onChange,
+			onInput,
+			onBlur,
+			onFocus,
+			placeholder,
+			required = false,
+			error = false,
+			disabled = false,
+			inputMode,
+			enterKeyHint = "enter",
+			autoFocus = false,
+			onKeyDown,
+			scrollIntoViewOnFocus = false,
+			...props
+		},
+		ref: ForwardedRef<HTMLInputElement>
+	) => {
+		const localRef = useRef<HTMLInputElement>(null);
+		const combinedRef = useCombinedRefs(ref, localRef);
+		const fallbackId = useId();
+		const inputId = name || fallbackId;
 
-			const computedInputMode = useMemo(() => {
-				if (inputMode) return inputMode;
+		useEffect(() => {
+			if (value !== undefined && typeof onChange !== "function") {
+				console.warn(
+					'Input is a controlled component, but "onChange" is not provided.'
+				);
+			}
+		}, [value, onChange]);
 
-				switch (type) {
-					case "number":
-						return "numeric";
-					case "tel":
-						return "tel";
-					case "email":
-						return "email";
-					case "url":
-						return "url";
-					default:
-						return undefined;
-				}
-			}, [type, inputMode]);
+		const computedInputMode = useMemo(() => {
+			if (inputMode) return inputMode;
 
-			const handleFocus = (event: FocusEvent<HTMLInputElement>) => {
-				if (onFocus) {
-					onFocus(event);
-				}
+			switch (type) {
+				case "number":
+					return "numeric";
+				case "tel":
+					return "tel";
+				case "email":
+					return "email";
+				case "url":
+					return "url";
+				default:
+					return undefined;
+			}
+		}, [type, inputMode]);
 
-				if (!scrollIntoViewOnFocus || disabled) return;
+		const scrollIfNeeded = () => {
+			const input = combinedRef.current;
+			if (!input) return;
 
+			const rect = input.getBoundingClientRect();
+			const isVisible =
+				rect.top >= 0 &&
+				rect.left >= 0 &&
+				rect.bottom <=
+					(window.innerHeight ||
+						document.documentElement.clientHeight) &&
+				rect.right <=
+					(window.innerWidth || document.documentElement.clientWidth);
+
+			if (!isVisible) {
+				input.scrollIntoView({
+					behavior: "smooth",
+					block: "center",
+				});
+			}
+		};
+
+		const handleFocus = (event: FocusEvent<HTMLInputElement>) => {
+			onFocus?.(event);
+
+			if (!scrollIntoViewOnFocus || disabled) return;
+
+			requestAnimationFrame(scrollIfNeeded);
+		};
+
+		useEffect(() => {
+			if (
+				autoFocus &&
+				!disabled &&
+				combinedRef.current &&
+				scrollIntoViewOnFocus
+			) {
 				requestAnimationFrame(() => {
 					const input = combinedRef.current;
 					if (!input) return;
 
-					const rect = input.getBoundingClientRect();
-					const isVisible =
-						rect.top >= 0 &&
-						rect.left >= 0 &&
-						rect.bottom <=
-							(window.innerHeight ||
-								document.documentElement.clientHeight) &&
-						rect.right <=
-							(window.innerWidth ||
-								document.documentElement.clientWidth);
-
-					if (!isVisible) {
-						input.scrollIntoView({
-							behavior: "smooth",
-							block: "center",
-						});
-					}
+					input.focus();
+					scrollIfNeeded();
 				});
-			};
+			}
+		}, [autoFocus, disabled, combinedRef, scrollIntoViewOnFocus]);
 
-			useEffect(() => {
-				if (autoFocus && combinedRef.current && scrollIntoViewOnFocus) {
-					requestAnimationFrame(() => {
-						const input = combinedRef.current;
-						if (!input) return;
+		const handleContainerClick = () => {
+			if (disabled) return;
+			combinedRef.current?.focus();
+		};
 
-						input.focus();
+		return (
+			<div
+				className={classNames(style.form, {
+					[style.error]: error,
+					[style.disabled]: disabled,
+				})}
+				onClick={handleContainerClick}
+				role="group"
+				aria-disabled={disabled}
+			>
+				{label && (
+					<label className={style.label} htmlFor={inputId}>
+						{label}
+						{required ? (
+							<span style={{ marginLeft: "2px" }}>*</span>
+						) : null}
+					</label>
+				)}
+				<div className={style.container}>
+					{icon && <span className={style.icon}>{icon}</span>}
 
-						const rect = input.getBoundingClientRect();
-						const isVisible =
-							rect.top >= 0 &&
-							rect.left >= 0 &&
-							rect.bottom <=
-								(window.innerHeight ||
-									document.documentElement.clientHeight) &&
-							rect.right <=
-								(window.innerWidth ||
-									document.documentElement.clientWidth);
-
-						if (!isVisible) {
-							input.scrollIntoView({
-								behavior: "smooth",
-								block: "center",
-							});
-						}
-					});
-				}
-			}, [autoFocus, combinedRef, scrollIntoViewOnFocus]);
-
-			const handleContainerClick = () => {
-				if (disabled) return;
-				combinedRef.current?.focus();
-			};
-
-			return (
-				<div
-					className={classNames("form", {
-						error: error,
-						disabled: disabled,
-					})}
-					onClick={handleContainerClick}
-					role="group"
-					aria-disabled={disabled}
-				>
-					{label && (
-						<label className="label" htmlFor={name}>
-							{label}
-							{required ? (
-								<span style={{ marginLeft: "2px" }}>*</span>
-							) : null}
-						</label>
-					)}
-					<div className="container">
-						{icon && <span className="icon">{icon}</span>}
-
-						<input
-							ref={combinedRef}
-							id={name}
-							className="input"
-							name={name}
-							type={type}
-							value={value}
-							onChange={onChange}
-							onInput={onInput}
-							onBlur={onBlur}
-							onFocus={handleFocus}
-							placeholder={placeholder}
-							required={required}
-							disabled={disabled}
-							enterKeyHint={enterKeyHint}
-							autoFocus={autoFocus}
-							inputMode={computedInputMode}
-							onKeyDown={onKeyDown}
-						/>
-					</div>
+					<input
+						ref={combinedRef}
+						id={inputId}
+						className={style.input}
+						name={name}
+						type={type}
+						value={value}
+						onChange={onChange}
+						onInput={onInput}
+						onBlur={onBlur}
+						onFocus={handleFocus}
+						placeholder={placeholder}
+						required={required}
+						disabled={disabled}
+						enterKeyHint={enterKeyHint}
+						autoFocus={autoFocus}
+						inputMode={computedInputMode}
+						onKeyDown={onKeyDown}
+						aria-invalid={error || undefined}
+						{...props}
+					/>
 				</div>
-			);
-		}
-	)
+			</div>
+		);
+	}
 );
 
 Input.displayName = "Input";

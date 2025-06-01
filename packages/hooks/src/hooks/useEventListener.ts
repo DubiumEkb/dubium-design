@@ -18,7 +18,8 @@ type Target =
 	| HTMLElement
 	| RefObject<EventTarget>
 	| RefObject<HTMLElement | null>
-	| null;
+	| null
+	| PointerEvent;
 
 /**
  * Параметры, передаваемые в хук `useEventListener`.
