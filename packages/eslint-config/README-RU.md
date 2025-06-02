@@ -3,7 +3,7 @@
 **Flat ESLint config** для проектов Dubium — модульный, расширяемый и строго структурированный.
 Поддерживает **TypeScript**, **React** и **доступность (a11y)**.
 
-[English version](./packages/eslint-config/README.md)
+[English version](https://github.com/DubiumEkb/dubium-design/blob/main/packages/eslint-config/README.md)
 
 ---
 
