@@ -2,7 +2,9 @@ import globals from "globals";
 
 export const base = {
 	name: "@dubium/eslint-config/base",
+
 	files: ["**/*.{js,mjs,cjs,jsx,ts,tsx}"],
+
 	languageOptions: {
 		ecmaVersion: "latest",
 		globals: {
@@ -12,6 +14,7 @@ export const base = {
 			...globals.jest,
 		},
 	},
+
 	rules: {
 		/**
 		 * Требует возврата значения в коллбэках методов массивов

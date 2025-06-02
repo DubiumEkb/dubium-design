@@ -3,7 +3,9 @@ import tsPlugin from "@typescript-eslint/eslint-plugin";
 
 export const typescript = {
 	name: "@dubium/eslint-config/typescript",
+
 	files: ["**/*.{ts,tsx}", "**/*.d.ts"],
+
 	languageOptions: {
 		parser: tsParser,
 		parserOptions: {
@@ -11,9 +13,11 @@ export const typescript = {
 			tsconfigRootDir: process.cwd(),
 		},
 	},
+
 	plugins: {
 		"@typescript-eslint": tsPlugin,
 	},
+
 	rules: {
 		"@typescript-eslint/no-explicit-any": "warn",
 		"@typescript-eslint/consistent-type-imports": "error",
