@@ -1,13 +1,13 @@
 {
 	"name": "@dubium/eslint-config",
 	"private": false,
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"type": "module",
-	"main": "./config/index.js",
 	"exports": {
 		".": "./config/index.js",
 		"./base": "./config/base.js",
 		"./react": "./config/react.js",
+		"./jsx-a11y": "./config/jsx-a11y.js",
 		"./typescript": "./config/typescript.js"
 	},
 	"files": [
@@ -15,10 +15,13 @@
 		"README.md",
 		"LICENSE"
 	],
-	"description": "",
+	"description": "Flat ESLint config for Dubium projects using TypeScript, React, and accessibility best practices.",
 	"keywords": [
 		"eslint",
-		"eslintconfig"
+		"eslintconfig",
+		"typescript",
+		"react",
+		"flat-config"
 	],
 	"homepage": "https://github.com/DubiumEkb/dubium-design/",
 	"bugs": {
@@ -28,32 +31,40 @@
 	"author": "https://github.com/DubiumEkb",
 	"license": "MIT",
 	"scripts": {
-		"dev": "vite",
-		"lint:inspect": "npx eslint --inspect-config",
-		"lint": "eslint --no-cache .",
-		"lint:write": "eslint --debug --no-cache src/",
-		"build": "tsc -b && vite build",
-		"preview": "vite preview"
+		"version:push": "yarn publish --access=public",
+		"lint:inspect": "npx eslint --inspect-config"
 	},
-	"peerDependencies": {
-		"eslint": ">=9.27.0"
-	},
-	"dependencies": {
-		"react": ">=19.1.0",
-		"react-dom": "^19.1.0"
+	"peerDependenciesMeta": {
+		"@typescript-eslint/eslint-plugin": {
+			"optional": true
+		},
+		"@typescript-eslint/parser": {
+			"optional": true
+		},
+		"eslint-plugin-react": {
+			"optional": true
+		},
+		"eslint-plugin-react-hooks": {
+			"optional": true
+		},
+		"eslint-plugin-react-refresh": {
+			"optional": true
+		},
+		"eslint-plugin-jsx-a11y": {
+			"optional": true
+		}
 	},
 	"devDependencies": {
-		"@types/react": "^19.1.5",
-		"@types/react-dom": "^19.1.5",
 		"@typescript-eslint/eslint-plugin": "^8.29.1",
 		"@typescript-eslint/parser": "^8.29.1",
-		"@vitejs/plugin-react-swc": "^3.8.1",
-		"eslint": ">=9.27.0",
+		"eslint": "^9.27.0",
+		"eslint-plugin-jsx-a11y": "^6.10.2",
+		"eslint-plugin-react": "^7.37.5",
 		"eslint-plugin-react-hooks": "^5.2.0",
 		"eslint-plugin-react-refresh": "^0.4.20",
-		"globals": "^16.2.0",
-		"typescript": "^5.8.3",
-		"typescript-eslint": "^8.32.1",
-		"vite": "^6.3.5"
+		"typescript": "^5.8.3"
+	},
+	"engines": {
+		"node": ">=18"
 	}
 }
