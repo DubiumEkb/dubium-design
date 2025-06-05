@@ -1,37 +1,31 @@
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
-import path from "path";
-import dts from "vite-plugin-dts";
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react-swc';
+import dts from 'vite-plugin-dts';
+import path from 'path';
 
 export default defineConfig({
-	plugins: [
-		react(),
-		dts({
-			insertTypesEntry: true,
-		}),
-	],
-	build: {
-		lib: {
-			entry: path.resolve(__dirname, "src/components/index.ts"),
-			name: "@dubium/ui",
-			formats: ["es", "umd"],
-			fileName: (format) => `dd.${format}.js`,
-		},
-		rollupOptions: {
-			external: ["react", "react-dom"],
-			output: {
-				globals: {
-					react: "React",
-					"react-dom": "ReactDOM",
-				},
-			},
-		},
-		outDir: "dist",
-		emptyOutDir: true,
-	},
-	resolve: {
-		alias: {
-			"@": path.resolve(__dirname, "src/components"),
-		},
-	},
+  plugins: [
+    react(),
+    dts({
+      insertTypesEntry: true,
+    }),
+  ],
+  build: {
+    lib: {
+      entry: path.resolve(__dirname, 'src/index.ts'),
+      name: 'MyUILibrary',
+      fileName: (format) => `index.${format}.js`, // без "dd." префикса
+      formats: ['es', 'umd'],
+    },
+    rollupOptions: {
+      external: ['react', 'react-dom'],
+      output: {
+        globals: {
+          react: 'React',
+          'react-dom': 'ReactDOM',
+        },
+      },
+    },
+    cssCodeSplit: true,
+  },
 });

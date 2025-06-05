@@ -5,7 +5,7 @@ import {
 	type JSX,
 	type ReactNode,
 } from "react";
-import "./Button.scss";
+import style from "./Button.module.scss";
 import classNames from "classnames";
 
 /**
@@ -136,7 +136,7 @@ export const Button = memo(
 
 		return (
 			<button
-				className={classNames("button", className)}
+				className={classNames(style.button, className)}
 				type={type}
 				onClick={handleClick}
 				role={role}

@@ -317,29 +317,29 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
 
 		return (
 			<div
-				className={classNames(style.form, {
-					[style.error]: error,
-					[style.disabled]: disabled,
+				className={classNames("form", {
+					error: error,
+					disabled: disabled,
 				})}
 				onClick={handleContainerClick}
 				role="group"
 				aria-disabled={disabled}
 			>
 				{label && (
-					<label className={style.label} htmlFor={inputId}>
+					<label className="label" htmlFor={inputId}>
 						{label}
 						{required ? (
 							<span style={{ marginLeft: "2px" }}>*</span>
 						) : null}
 					</label>
 				)}
-				<div className={style.container}>
-					{icon && <span className={style.icon}>{icon}</span>}
+				<div className="container">
+					{icon && <span className="icon">{icon}</span>}
 
 					<input
 						ref={combinedRef}
 						id={inputId}
-						className={style.input}
+						className="input"
 						name={name}
 						type={type}
 						value={value}

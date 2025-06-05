@@ -8,9 +8,6 @@
 		"url": "https://github.com/DubiumEkb/dubium-design/issues"
 	},
 	"repository": "https://github.com/DubiumEkb/dubium-design",
-	"main": "./dist/hooks.umd.js",
-	"module": "./dist/hooks.es.js",
-	"types": "./dist/index.d.ts",
 	"files": [
 		"dist",
 		"README.md",

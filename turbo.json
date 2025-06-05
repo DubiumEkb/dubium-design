@@ -5,7 +5,7 @@
 		"build": {
 			"outputs": ["dist/**", "storybook-static/**"]
 		},
-		"dev": {
+		"dev:ui": {
 			"cache": false,
 			"persistent": true
 		}

@@ -11,10 +11,12 @@
 		"version:minor": "yarn version minor",
 		"version:major": "yarn version major",
 		"dev": "storybook dev -p 6006",
+		"dev:ui": "yarn run dev",
 		"build": "yarn run clean:docs && STORYBOOK_BUILD=true storybook build --docs"
 	},
 	"dependencies": {
 		"@dubium/ui": "*",
+		"@dubium/hooks": "*",
 		"@emotion/is-prop-valid": "^1.3.1",
 		"react": ">=19.1.0",
 		"react-dom": "^19.1.0"

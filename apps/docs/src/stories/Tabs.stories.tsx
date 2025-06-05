@@ -21,7 +21,20 @@ const defaultTabs = [
 	{ key: "about", label: "О сайте" },
 ];
 
-const Template: StoryFn<any> = (args) => <Tabs {...args} />;
+const Template: StoryFn<any> = (args) => {
+	const [activeTab, setActiveTab] = React.useState(args.isActive);
+
+	return (
+		<Tabs
+			{...args}
+			isActive={activeTab}
+			onChange={(tab) => {
+				setActiveTab(tab.key);
+				args.onChange?.(tab);
+			}}
+		/>
+	);
+};
 
 export const DefaultTabs = {
 	render: Template,
