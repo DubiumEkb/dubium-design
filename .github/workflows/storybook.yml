@@ -25,7 +25,7 @@ jobs:
               working-directory: apps/docs
               run: yarn build
 
-            - name: Set git user
+            - name: Configure Git user
               run: |
                   git config --global user.name "github-actions[bot]"
                   git config --global user.email "github-actions[bot]@users.noreply.github.com"
