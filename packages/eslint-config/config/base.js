@@ -398,7 +398,7 @@ export const base = {
 		 * Requires atomic updates of asynchronous variables
 		 * Ссылка: https://eslint.org/docs/latest/rules/require-atomic-updates
 		 */
-		"require-atomic-updates": error,
+		"require-atomic-updates": "error",
 
 		/**
 		 * Требует использования метода isNaN() для проверки на NaN

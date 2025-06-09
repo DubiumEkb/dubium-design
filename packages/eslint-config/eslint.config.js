@@ -1,5 +1,7 @@
 import { defineConfig } from "eslint/config";
-import { base, react, typescript } from "./config/index.js";
+import { base } from "./config/base.js";
+import { react } from "./config/react.js";
+import { typescript } from "./config/typescript.js";
 
 export default defineConfig([
 	base,
