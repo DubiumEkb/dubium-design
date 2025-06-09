@@ -422,13 +422,6 @@ export const base = {
 		"class-methods-use-this": ["warn"],
 
 		/**
-		 * Ограничивает цикломатическую сложность функций
-		 * Limits the cyclomatic complexity of functions
-		 * Ссылка: https://eslint.org/docs/latest/rules/complexity
-		 */
-		complexity: ["warn", { max: 3 }],
-
-		/**
 		 * Требует согласованного возврата значений из функций
 		 * Requires consistent return values from functions
 		 * Ссылка: https://eslint.org/docs/latest/rules/consistent-return

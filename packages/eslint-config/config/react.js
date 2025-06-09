@@ -180,33 +180,6 @@ export const react = {
 		],
 
 		/**
-		 * Требует или запрещает пробелы между дочерними JSX-элементами для улучшения читаемости
-		 * Enforces or forbids spaces between JSX child elements for readability
-		 * Ссылка: https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-child-element-spacing.md
-		 */
-		"react/jsx-child-element-spacing": [
-			"warn",
-			{
-				allowMultiline: true, // разрешает пробелы и переносы строк между элементами
-				before: true, // требует пробел перед дочерним элементом
-				after: true, // требует пробел после дочернего элемента
-			},
-		],
-
-		/**
-		 * Контролирует расположение закрывающей скобки JSX-элементов
-		 * Controls the location of the closing bracket for JSX elements
-		 * Ссылка: https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-closing-bracket-location.md
-		 */
-		"react/jsx-closing-bracket-location": [
-			"error",
-			{
-				selfClosing: "line-aligned", // для самозакрывающихся тегов — на той же линии, что и последний проп
-				multiline: "line-aligned", // для многострочных — на отдельной линии, выровненной по открывающему тегу
-			},
-		],
-
-		/**
 		 * Контролирует расположение закрывающего тега JSX-элементов
 		 * Enforces the location of the closing tag in multiline JSX elements
 		 * Ссылка: https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-closing-tag-location.md
@@ -223,19 +196,6 @@ export const react = {
 			{
 				props: "never", // запрещает использовать {} для строковых литералов в пропсах
 				children: "never", // запрещает использовать {} для строковых литералов в дочерних элементах
-			},
-		],
-
-		/**
-		 * Контролирует переносы строк внутри фигурных скобок в JSX
-		 * Enforces consistent line breaks inside JSX curly braces
-		 * Ссылка: https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-curly-newline.md
-		 */
-		"react/jsx-curly-newline": [
-			"error",
-			{
-				multiline: "require", // требует переносы строк внутри {} если содержимое многострочное
-				singleline: "forbid", // запрещает переносы строк внутри {} если содержимое в одну строку
 			},
 		],
 
@@ -303,7 +263,7 @@ export const react = {
 				eventHandlerPrefix: "handle", // префикс для функций-обработчиков, например handleClick
 				eventHandlerPropPrefix: "on", // префикс для пропов с обработчиками, например onClick
 				checkLocalVariables: true, // проверять локальные переменные с функциями-обработчиками
-				checkInlineFunction: true, // проверять анонимные функции в пропсах
+				checkInlineFunction: false, // проверять анонимные функции в пропсах
 			},
 		],
 
@@ -330,21 +290,6 @@ export const react = {
 			"error",
 			{
 				prevent: false, // false — требует переносов между JSX элементами, true — запрещает лишние переносы
-			},
-		],
-
-		/**
-		 * Запрещает использование inline-функций и bind в JSX пропсах для оптимизации производительности
-		 * Disallows usage of bind() or inline functions in JSX props to avoid unnecessary re-renders
-		 * Ссылка: https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md
-		 */
-		"react/jsx-no-bind": [
-			"warn",
-			{
-				ignoreRefs: true, // игнорировать ref колбэки
-				allowArrowFunctions: false, // запрещать стрелочные функции в пропсах
-				allowBind: false, // запрещать .bind() в пропсах
-				ignoreDOMComponents: true, // игнорировать DOM-элементы (<div>, <button> и т.п.)
 			},
 		],
 
@@ -377,7 +322,7 @@ export const react = {
 		"react/jsx-no-leaked-render": [
 			"warn",
 			{
-				validStrategies: ["ternary", "logical", "coerce"], // допустимые способы безопасного рендера
+				validStrategies: ["ternary", "coerce"],
 			},
 		],
 

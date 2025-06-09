@@ -8,10 +8,6 @@ export const typescript = {
 
 	languageOptions: {
 		parser: tsParser,
-		parserOptions: {
-			project: "./tsconfig.json",
-			tsconfigRootDir: process.cwd(),
-		},
 	},
 
 	plugins: {
@@ -19,6 +15,12 @@ export const typescript = {
 	},
 
 	rules: {
+		/**
+		 * Запрещает объявление неиспользуемых переменных
+		 * Disallows unused variables
+		 * Ссылка: https://eslint.org/docs/latest/rules/no-unused-vars
+		 */
+		"no-unused-vars": "off",
 		"@typescript-eslint/no-explicit-any": "warn",
 		"@typescript-eslint/consistent-type-imports": "error",
 		"@typescript-eslint/no-unused-vars": ["warn"],
