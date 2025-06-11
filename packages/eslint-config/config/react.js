@@ -1,11 +1,11 @@
-import pluginReact from "eslint-plugin-react";
-import pluginReactRefresh from "eslint-plugin-react-refresh";
-import pluginReactHooks from "eslint-plugin-react-hooks";
+import pluginReact from "eslint-plugin-react"
+import pluginReactRefresh from "eslint-plugin-react-refresh"
+import pluginReactHooks from "eslint-plugin-react-hooks"
 
 export const react = {
 	name: "@dubium/eslint-config/react",
 
-	files: ["**/*.{jsx,js,ts,tsx}"],
+	files: [ "**/*.{jsx,js,ts,tsx}" ],
 
 	languageOptions: {
 		parserOptions: {
@@ -107,18 +107,6 @@ export const react = {
 		"react/display-name": "warn",
 
 		/**
-		 * Запрещает использовать определённые пропы в компонентах React
-		 * Forbids specified props on components to enforce code conventions or avoid bugs
-		 * Ссылка: https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/forbid-component-props.md
-		 */
-		"react/forbid-component-props": [
-			"error",
-			{
-				forbid: ["style", "className"], // пример — запрещаем использовать style и className
-			},
-		],
-
-		/**
 		 * Запрещает использование определённых пропов на DOM-элементах (например, <div>, <input>)
 		 * Forbids specified props on DOM nodes to enforce code style or prevent errors
 		 * Ссылка: https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/forbid-dom-props.md
@@ -126,7 +114,7 @@ export const react = {
 		"react/forbid-dom-props": [
 			"warn",
 			{
-				forbid: ["style"], // пример — запрещаем inline-стили на DOM-элементах
+				forbid: [ "style" ], // пример — запрещаем inline-стили на DOM-элементах
 			},
 		],
 
@@ -230,7 +218,7 @@ export const react = {
 		"react/jsx-filename-extension": [
 			"error",
 			{
-				extensions: [".tsx", ".jsx"], // разрешённые расширения файлов с JSX
+				extensions: [ ".tsx", ".jsx" ], // разрешённые расширения файлов с JSX
 			},
 		],
 
@@ -250,7 +238,7 @@ export const react = {
 		 * Enforces shorthand <>...</> for fragments, but allows <React.Fragment> with props
 		 * Ссылка: https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-fragments.md
 		 */
-		"react/jsx-fragments": ["error", "syntax"],
+		"react/jsx-fragments": [ "error", "syntax" ],
 
 		/**
 		 * Требует, чтобы имена обработчиков событий в JSX соответствовали определённым шаблонам
@@ -273,13 +261,6 @@ export const react = {
 		 * Ссылка: https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-key.md
 		 */
 		"react/jsx-key": "error",
-
-		/**
-		 * Ограничивает максимальную глубину вложенности JSX-элементов в дереве
-		 * Limits the maximum depth of JSX elements to improve readability and maintainability
-		 * Ссылка: https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-max-depth.md
-		 */
-		"react/jsx-max-depth": ["warn", { max: 4 }],
 
 		/**
 		 * Требует соблюдать перенос строки вокруг JSX-элементов для улучшения читаемости
@@ -322,7 +303,7 @@ export const react = {
 		"react/jsx-no-leaked-render": [
 			"warn",
 			{
-				validStrategies: ["ternary", "coerce"],
+				validStrategies: [ "ternary", "coerce" ],
 			},
 		],
 
@@ -545,6 +526,6 @@ export const react = {
 		 * Ensures only components are exported for React Fast Refresh
 		 * Ссылка: https://github.com/react-refresh/eslint-plugin-react-refresh
 		 */
-		"react-refresh/only-export-components": ["warn"],
+		"react-refresh/only-export-components": [ "warn" ],
 	},
-};
+}
