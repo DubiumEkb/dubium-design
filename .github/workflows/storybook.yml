@@ -13,7 +13,7 @@ jobs:
             - name: Checkout repo
               uses: actions/checkout@v4
               with:
-                  fetch-depth: 0 # Важно для работы gh-pages
+                  fetch-depth: 0
 
             - name: Setup Node.js
               uses: actions/setup-node@v4
@@ -22,22 +22,25 @@ jobs:
                   cache: "yarn"
 
             - name: Install dependencies
+              working-directory: apps/docs
               run: yarn install --frozen-lockfile
 
             - name: Configure Git
               run: |
                   git config --global user.name "GitHub Actions"
                   git config --global user.email "actions@github.com"
-                  git remote set-url origin https://github.com/${{ github.repository }}.git
-                  git config --global http.https://github.com/.extraheader "AUTHORIZATION: basic $(echo -n ${{ github.actor }}:${{ secrets.GITHUB_TOKEN }} | base64)"
 
             - name: Build Storybook
               working-directory: apps/docs
-              run: yarn build-storybook
+              run: yarn build
+
+            - name: Verify build output
+              working-directory: apps/docs
+              run: ls -la storybook-static
 
             - name: Deploy to GitHub Pages
               uses: peaceiris/actions-gh-pages@v4
               with:
                   github_token: ${{ secrets.GITHUB_TOKEN }}
                   publish_dir: apps/docs/storybook-static
-                  keep_files: false # Очищать перед деплоем
+                  keep_files: false
