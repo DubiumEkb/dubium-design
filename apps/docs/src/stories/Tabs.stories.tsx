@@ -1,7 +1,6 @@
 import React from "react";
 import type { Meta, StoryFn } from "@storybook/react";
 import { Tabs } from "@dubium/ui";
-import "../style.css";
 
 const meta: Meta<any> = {
 	title: "UI/Tabs",

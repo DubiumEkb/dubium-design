@@ -2,8 +2,6 @@ import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { Button } from "@dubium/ui";
 
-import "../style.css";
-
 const meta: Meta<typeof Button> = {
 	title: "UI/Button",
 	component: Button,
