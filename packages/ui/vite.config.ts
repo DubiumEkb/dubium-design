@@ -2,7 +2,6 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import dts from "vite-plugin-dts";
 import path from "path";
-import postcss from "rollup-plugin-postcss";
 
 export default defineConfig({
 	plugins: [
@@ -11,6 +10,12 @@ export default defineConfig({
 			insertTypesEntry: true,
 		}),
 	],
+	css: {
+		modules: {
+			localsConvention: "camelCaseOnly",
+		},
+		postcss: "./postcss.config.mjs",
+	},
 	build: {
 		lib: {
 			entry: path.resolve(__dirname, "src/index.ts"),
@@ -26,15 +31,6 @@ export default defineConfig({
 					"react-dom": "ReactDOM",
 				},
 			},
-			plugins: [
-				postcss({
-					modules: true,
-					inject: true,
-					extract: false,
-					minimize: true,
-					sourceMap: false,
-				}),
-			],
 		},
 		sourcemap: true,
 	},
