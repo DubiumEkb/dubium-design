@@ -1,49 +1,71 @@
-import fs from "fs";
-import path from "path";
-import { fileURLToPath } from "url";
+import fs from 'fs'
+import path from 'path'
+import { fileURLToPath } from 'url'
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const __filename = fileURLToPath( import.meta.url )
+const __dirname = path.dirname( __filename )
 
-const distDir = path.resolve(__dirname, "../dist/components");
+const distDir = path.resolve( __dirname, '../dist' )
+const componentsDir = path.join( distDir, 'components' )
 
-const components = fs
-	.readdirSync(distDir, { withFileTypes: true })
-	.filter((dirent) => dirent.isDirectory())
-	.map((dirent) => dirent.name);
-
+// Создаем объект экспортов
 const exportsField = {
-	".": {
-		types: "./dist/index.d.ts",
-		import: "./dist/index.js",
-	},
-};
-
-for (const comp of components) {
-	const compDir = path.join(distDir, comp);
-	const files = fs.readdirSync(compDir);
-
-	const jsFile = files.find((f) => f === `${comp}.js`);
-	const dtsFile = files.find((f) => f === `${comp}.d.ts`);
-	const cssFile = files.find((f) => f === `${comp}.css`);
-
-	if (!jsFile || !dtsFile) {
-		console.warn(`⚠️ Пропускаем компонент ${comp}, нет js или d.ts`);
-		continue;
+	'.': {
+		types: './dist/types/index.d.ts',
+		import: './dist/index.es.js',
+		require: './dist/index.umd.js'
 	}
-
-	exportsField[`./${comp}`] = {
-		types: `./dist/components/${comp}/${dtsFile}`,
-		import: `./dist/components/${comp}/${jsFile}`,
-	};
 }
 
-const pkgPath = path.resolve(__dirname, "../package.json");
-const pkgJson = await fs.promises.readFile(pkgPath, "utf-8");
-const pkg = JSON.parse(pkgJson);
+try {
+	// Проверяем существование директории компонентов
+	if ( !fs.existsSync( componentsDir ) ) {
+		console.log( 'ℹ️ Директория components не найдена, используются только основные экспорты' )
+	} else {
+		// Читаем компоненты
+		const components = fs
+			.readdirSync( componentsDir, { withFileTypes: true } )
+			.filter( dirent => dirent.isDirectory() )
+			.map( dirent => dirent.name )
 
-pkg.exports = exportsField;
+		for ( const comp of components ) {
+			const compPath = `./${ comp }`
+			const compDir = path.join( componentsDir, comp )
 
-await fs.promises.writeFile(pkgPath, JSON.stringify(pkg, null, 2) + "\n");
+			// Ищем файлы компонента
+			const files = fs.readdirSync( compDir )
+			const jsFile = files.find( f => f.endsWith( '.js' ) && !f.endsWith( '.d.ts.js' ) )
+			const dtsFile = files.find( f => f.endsWith( '.d.ts' ) )
+			const cssFile = files.find( f => f.endsWith( '.module.css' ) )
 
-console.log("✅ package.json exports обновлены!");
+			if ( !jsFile ) {
+				console.warn( `⚠️ Пропускаем компонент ${ comp }: не найден JS файл` )
+				continue
+			}
+
+			// Добавляем экспорт для компонента
+			exportsField[ compPath ] = {
+				types: dtsFile ? `./dist/components/${ comp }/${ dtsFile }` : undefined,
+				import: `./dist/components/${ comp }/${ jsFile }`,
+				...( cssFile ? { styles: `./dist/components/${ comp }/${ cssFile }` } : {} )
+			}
+		}
+	}
+
+	// Обновляем package.json
+	const pkgPath = path.resolve( __dirname, '../package.json' )
+	const pkg = JSON.parse( await fs.promises.readFile( pkgPath, 'utf-8' ) )
+
+	// Сохраняем оригинальные поля если они есть
+	pkg.exports = {
+		...exportsField,
+		...( pkg.exports && typeof pkg.exports === 'object' ? pkg.exports : {} )
+	}
+
+	await fs.promises.writeFile( pkgPath, JSON.stringify( pkg, null, 2 ) + '\n' )
+	console.log( '✅ package.json exports успешно обновлены!' )
+
+} catch ( error ) {
+	console.error( '❌ Ошибка при генерации экспортов:', error )
+	process.exit( 1 )
+}
