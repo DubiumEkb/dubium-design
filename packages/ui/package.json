@@ -1,7 +1,7 @@
 {
   "name": "@dubium/ui",
   "private": false,
-  "version": "0.0.15",
+  "version": "0.0.16",
   "type": "module",
   "homepage": "https://github.com/DubiumEkb/dubium-design/",
   "bugs": {
