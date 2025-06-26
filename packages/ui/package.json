@@ -70,6 +70,32 @@
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
+    },
+    "./Alert": {
+      "import": "./dist/Alert/Alert.js",
+      "styles": "./dist/Alert/Alert.css"
+    },
+    "./Button": {
+      "import": "./dist/Button/Button.js",
+      "styles": "./dist/Button/Button.css"
+    },
+    "./Image": {
+      "import": "./dist/Image/Image.js"
+    },
+    "./Input": {
+      "import": "./dist/Input/Input.js",
+      "styles": "./dist/Input/Input.css"
+    },
+    "./Portal": {
+      "import": "./dist/Portal/Portal.js"
+    },
+    "./Tabs": {
+      "import": "./dist/Tabs/Tabs.js",
+      "styles": "./dist/Tabs/Tabs.css"
+    },
+    "./Textarea": {
+      "import": "./dist/Textarea/Textarea.js",
+      "styles": "./dist/Textarea/Textarea.css"
     }
   }
 }
