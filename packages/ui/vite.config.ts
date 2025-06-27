@@ -39,7 +39,7 @@ export default defineConfig({
 		dts({
 			// <-- Добавьте плагин dts
 			insertTypesEntry: true, // Генерирует файл `index.d.ts` в корне сборки
-			rollupTypes: true, // Объединяет типы в один файл (опционально)
+			rollupTypes: false, // Объединяет типы в один файл (опционально)
 			include: ["src/components/*"], // Где искать файлы для генерации типов
 			exclude: ["**/*.stories.tsx", "**/*.test.tsx"], // Исключить ненужные файлы
 		}),

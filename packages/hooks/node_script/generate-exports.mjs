@@ -7,61 +7,45 @@ const __dirname = path.dirname( __filename )
 
 const distDir = path.resolve( __dirname, '../dist' )
 
-// Создаем объект экспортов
+// Базовые экспорты
 const exportsField = {
-	'.': {
-		types: './dist/types/index.d.ts',
-		import: './dist/index.es.js',
-		require: './dist/index.umd.js',
-	},
+	".": {
+		"types": "./dist/index.d.ts",
+		"import": "./dist/index.js"
+	}
 }
 
 try {
-	// Проверяем существование директории dist
-	if ( !fs.existsSync( distDir ) ) {
-		console.log( 'ℹ️ Директория dist не найдена, используются только основные экспорты' )
+	// Проверяем существование директории dist/hooks
+	const hooksDir = path.join( distDir, 'hooks' )
+	if ( !fs.existsSync( hooksDir ) ) {
+		console.log( 'ℹ️ Директория dist/hooks не найдена, используются только основные экспорты' )
 	} else {
-		// Читаем папки в dist (компоненты)
-		const components = fs
-			.readdirSync( distDir, { withFileTypes: true } )
-			.filter( ( dirent ) => dirent.isDirectory() )
-			.map( ( dirent ) => dirent.name )
+		// Читаем файлы хуков
+		const hookFiles = fs.readdirSync( hooksDir )
+			.filter( file => file.endsWith( '.js' ) && !file.endsWith( '.d.ts.js' ) )
+			.map( file => file.replace( '.js', '' ) )
 
-		for ( const comp of components ) {
-			const compPath = `./${ comp }`
-			const compDir = path.join( distDir, comp )
+		for ( const hook of hookFiles ) {
+			const hookPath = `./${ hook }`
+			const hookBasePath = `./dist/hooks/${ hook }`
 
-			// Ищем файлы компонента
-			const files = fs.readdirSync( compDir )
-			const jsFile = files.find( ( f ) => f.endsWith( '.js' ) && !f.endsWith( '.d.ts.js' ) )
-			const dtsFile = files.find( ( f ) => f.endsWith( '.d.ts' ) )
-			const cssFile = files.find( ( f ) => f.endsWith( '.module.css' ) || f.endsWith( '.css' ) )
-
-			if ( !jsFile ) {
-				console.warn( `⚠️ Пропускаем компонент ${ comp }: не найден JS файл` )
-				continue
-			}
-
-			// Добавляем экспорт для компонента
-			exportsField[ compPath ] = {
-				types: dtsFile ? `./dist/${ comp }/${ dtsFile }` : undefined,
-				import: `./dist/${ comp }/${ jsFile }`,
-				...( cssFile ? { styles: `./dist/${ comp }/${ cssFile }` } : {} ),
+			// Добавляем экспорт для каждого хука
+			exportsField[ hookPath ] = {
+				"types": `${ hookBasePath }.d.ts`,
+				"import": `${ hookBasePath }.js`
 			}
 		}
 	}
 
 	// Обновляем package.json
 	const pkgPath = path.resolve( __dirname, '../package.json' )
-	const pkg = JSON.parse( await fs.promises.readFile( pkgPath, 'utf-8' ) )
+	const pkg = JSON.parse( fs.readFileSync( pkgPath, 'utf-8' ) )
 
-	// Сохраняем оригинальные поля если они есть, и перезаписываем exports
-	pkg.exports = {
-		...exportsField,
-		...( pkg.exports && typeof pkg.exports === 'object' ? pkg.exports : {} ),
-	}
+	// Сохраняем только необходимые экспорты (перезаписываем полностью)
+	pkg.exports = exportsField
 
-	await fs.promises.writeFile( pkgPath, JSON.stringify( pkg, null, 2 ) + '\n' )
+	fs.writeFileSync( pkgPath, JSON.stringify( pkg, null, 2 ) + '\n' )
 	console.log( '✅ package.json exports успешно обновлены!' )
 } catch ( error ) {
 	console.error( '❌ Ошибка при генерации экспортов:', error )

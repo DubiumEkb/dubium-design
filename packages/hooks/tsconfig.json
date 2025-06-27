@@ -12,6 +12,6 @@
 		"strict": true,
 		"types": []
 	},
-	"include": ["src/hooks"],
+	"include": ["src/hooks", "src/index.ts"],
 	"exclude": ["node_modules", "dist", "src/main.tsx", "src/App.tsx"]
 }
