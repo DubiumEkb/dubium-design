@@ -1,7 +1,7 @@
 {
   "name": "@dubium/hooks",
   "private": false,
-  "version": "0.0.5",
+  "version": "0.0.6",
   "type": "module",
   "homepage": "https://github.com/DubiumEkb/dubium-design/",
   "bugs": {
@@ -60,72 +60,72 @@
       "import": "./dist/index.js"
     },
     "./useClickOutside": {
-      "types": "./dist/useClickOutside.d.ts",
-      "import": "./dist/useClickOutside.js"
+      "types": "./dist/hooks/useClickOutside.d.ts",
+      "import": "./dist/hooks/useClickOutside.js"
     },
     "./useCombinedRefs": {
-      "types": "./dist/useCombinedRefs.d.ts",
-      "import": "./dist/useCombinedRefs.js"
+      "types": "./dist/hooks/useCombinedRefs.d.ts",
+      "import": "./dist/hooks/useCombinedRefs.js"
     },
     "./useCounter": {
-      "types": "./dist/useCounter.d.ts",
-      "import": "./dist/useCounter.js"
+      "types": "./dist/hooks/useCounter.d.ts",
+      "import": "./dist/hooks/useCounter.js"
     },
     "./useDebounce": {
-      "types": "./dist/useDebounce.d.ts",
-      "import": "./dist/useDebounce.js"
+      "types": "./dist/hooks/useDebounce.d.ts",
+      "import": "./dist/hooks/useDebounce.js"
     },
     "./useEventListener": {
-      "types": "./dist/useEventListener.d.ts",
-      "import": "./dist/useEventListener.js"
+      "types": "./dist/hooks/useEventListener.d.ts",
+      "import": "./dist/hooks/useEventListener.js"
     },
     "./useHover": {
-      "types": "./dist/useHover.d.ts",
-      "import": "./dist/useHover.js"
+      "types": "./dist/hooks/useHover.d.ts",
+      "import": "./dist/hooks/useHover.js"
     },
     "./useIntersectionObserver": {
-      "types": "./dist/useIntersectionObserver.d.ts",
-      "import": "./dist/useIntersectionObserver.js"
+      "types": "./dist/hooks/useIntersectionObserver.d.ts",
+      "import": "./dist/hooks/useIntersectionObserver.js"
     },
     "./useMountEffect": {
-      "types": "./dist/useMountEffect.d.ts",
-      "import": "./dist/useMountEffect.js"
+      "types": "./dist/hooks/useMountEffect.d.ts",
+      "import": "./dist/hooks/useMountEffect.js"
     },
     "./useMove": {
-      "types": "./dist/useMove.d.ts",
-      "import": "./dist/useMove.js"
+      "types": "./dist/hooks/useMove.d.ts",
+      "import": "./dist/hooks/useMove.js"
     },
     "./useNetworkState": {
-      "types": "./dist/useNetworkState.d.ts",
-      "import": "./dist/useNetworkState.js"
+      "types": "./dist/hooks/useNetworkState.d.ts",
+      "import": "./dist/hooks/useNetworkState.js"
     },
     "./usePinInput": {
-      "types": "./dist/usePinInput.d.ts",
-      "import": "./dist/usePinInput.js"
+      "types": "./dist/hooks/usePinInput.d.ts",
+      "import": "./dist/hooks/usePinInput.js"
     },
     "./usePrevious": {
-      "types": "./dist/usePrevious.d.ts",
-      "import": "./dist/usePrevious.js"
+      "types": "./dist/hooks/usePrevious.d.ts",
+      "import": "./dist/hooks/usePrevious.js"
     },
     "./useThrottle": {
-      "types": "./dist/useThrottle.d.ts",
-      "import": "./dist/useThrottle.js"
+      "types": "./dist/hooks/useThrottle.d.ts",
+      "import": "./dist/hooks/useThrottle.js"
     },
     "./useUnmountEffect": {
-      "types": "./dist/useUnmountEffect.d.ts",
-      "import": "./dist/useUnmountEffect.js"
+      "types": "./dist/hooks/useUnmountEffect.d.ts",
+      "import": "./dist/hooks/useUnmountEffect.js"
     },
     "./useUpdateEffect": {
-      "types": "./dist/useUpdateEffect.d.ts",
-      "import": "./dist/useUpdateEffect.js"
+      "types": "./dist/hooks/useUpdateEffect.d.ts",
+      "import": "./dist/hooks/useUpdateEffect.js"
     },
     "./useVirtualList": {
-      "types": "./dist/useVirtualList.d.ts",
-      "import": "./dist/useVirtualList.js"
+      "types": "./dist/hooks/useVirtualList.d.ts",
+      "import": "./dist/hooks/useVirtualList.js"
     },
     "./useWindowSize": {
-      "types": "./dist/useWindowSize.d.ts",
-      "import": "./dist/useWindowSize.js"
+      "types": "./dist/hooks/useWindowSize.d.ts",
+      "import": "./dist/hooks/useWindowSize.js"
     }
   }
 }
