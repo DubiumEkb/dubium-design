@@ -1,7 +1,7 @@
 {
   "name": "@dubium/hooks",
   "private": false,
-  "version": "0.0.4",
+  "version": "0.0.5",
   "type": "module",
   "homepage": "https://github.com/DubiumEkb/dubium-design/",
   "bugs": {
@@ -27,7 +27,7 @@
   "scripts": {
     "clean:dist": "rimraf dist",
     "dev": "vite",
-    "generate:exports": "node generate-exports.mjs",
+    "generate:exports": "node node_script/generate-exports.mjs",
     "build": "yarn run clean:dist && tsc -b && yarn run generate:exports",
     "lint": "eslint .",
     "preview": "vite preview",
