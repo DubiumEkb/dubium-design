@@ -1,8 +1,9 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
-import { resolve, join, dirname } from "path";
+import { resolve, join } from "path";
 import fs from "fs";
 import { libInjectCss } from "vite-plugin-lib-inject-css";
+import dts from "vite-plugin-dts";
 
 function getEntries() {
 	const componentsDir = resolve(__dirname, "src/components");
@@ -35,6 +36,13 @@ export default defineConfig({
 			jsxImportSource: "react",
 		}),
 		libInjectCss(),
+		dts({
+			// <-- Добавьте плагин dts
+			insertTypesEntry: true, // Генерирует файл `index.d.ts` в корне сборки
+			rollupTypes: true, // Объединяет типы в один файл (опционально)
+			include: ["src/components/*"], // Где искать файлы для генерации типов
+			exclude: ["**/*.stories.tsx", "**/*.test.tsx"], // Исключить ненужные файлы
+		}),
 	],
 	build: {
 		lib: {
