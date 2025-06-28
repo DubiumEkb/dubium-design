@@ -1,7 +1,7 @@
 {
   "name": "@dubium/ui",
   "private": false,
-  "version": "0.0.16",
+  "version": "0.0.17",
   "type": "module",
   "homepage": "https://github.com/DubiumEkb/dubium-design/",
   "bugs": {
@@ -24,6 +24,7 @@
   ],
   "author": "https://github.com/DubiumEkb",
   "license": "MIT",
+  "sideEffects": false,
   "scripts": {
     "clean:dist": "rimraf dist",
     "dev": "vite",
@@ -31,6 +32,7 @@
     "build:ts": "tsc -b",
     "generate:exports": "node node_script/generate-exports.mjs",
     "build": "yarn clean:dist && vite build && yarn generate:exports",
+    "build:del": "yarn clean:dist && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "version:push": "yarn publish --access=public",
@@ -39,14 +41,13 @@
     "version:major": "yarn version major"
   },
   "peerDependencies": {
-    "@dubium/hooks": "^0.0.4",
+    "@dubium/hooks": "^0.0.6",
     "classnames": "^2.5.1",
     "react": " ^18.0.0 || ^19.0.0",
     "react-dom": "^18.0.0 || ^19.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.27.0",
-    "@rollup/plugin-node-resolve": "^16.0.1",
     "@types/react": "^19.1.5",
     "@types/react-dom": "^19.1.5",
     "@vitejs/plugin-react-swc": "^3.8.1",
@@ -56,46 +57,22 @@
     "globals": "^16.2.0",
     "prettier": "^3.5.3",
     "rimraf": "^6.0.1",
-    "sass": "^1.89.1",
+    "sass": "^1.89.2",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.32.1",
     "vite": "^6.3.5",
     "vite-plugin-dts": "^4.5.4",
     "vite-plugin-lib-inject-css": "^2.2.2"
   },
-  "main": "dist/index.umd.js",
-  "module": "dist/index.es.js",
-  "types": "dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
-    "./Alert": {
-      "import": "./dist/Alert/Alert.js",
-      "styles": "./dist/Alert/Alert.css"
-    },
-    "./Button": {
-      "import": "./dist/Button/Button.js",
-      "styles": "./dist/Button/Button.css"
-    },
-    "./Image": {
-      "import": "./dist/Image/Image.js"
-    },
-    "./Input": {
-      "import": "./dist/Input/Input.js",
-      "styles": "./dist/Input/Input.css"
-    },
-    "./Portal": {
-      "import": "./dist/Portal/Portal.js"
-    },
-    "./Tabs": {
-      "import": "./dist/Tabs/Tabs.js",
-      "styles": "./dist/Tabs/Tabs.css"
-    },
-    "./Textarea": {
-      "import": "./dist/Textarea/Textarea.js",
-      "styles": "./dist/Textarea/Textarea.css"
+    "./*": {
+      "types": "./dist/components/*/index.d.ts",
+      "import": "./dist/components/*/index.js",
+      "style": "./dist/components/*/*.css"
     }
   }
 }
