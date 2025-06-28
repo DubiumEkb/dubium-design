@@ -13,7 +13,7 @@ import classNames from "classnames";
  *
  * @extends ButtonHTMLAttributes<HTMLButtonElement>
  */
-export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 	/**
 	 * Дополнительный CSS-класс для корневого элемента кнопки.
 	 *

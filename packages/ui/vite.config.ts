@@ -1,77 +1,63 @@
 import { defineConfig } from "vite";
+
+// Используем SWC-компилятор для React (быстрее Babel)
 import react from "@vitejs/plugin-react-swc";
-import { resolve, join } from "path";
-import fs from "fs";
+
+// Для работы с путями
+import { resolve } from "path";
+
+// Плагин для инжекта CSS в сборку библиотеки
 import { libInjectCss } from "vite-plugin-lib-inject-css";
-import dts from "vite-plugin-dts";
 
-function getEntries() {
-	const componentsDir = resolve(__dirname, "src/components");
-	const entries: Record<string, string> = {
-		index: resolve(__dirname, "src/index.ts"),
-	};
-
-	const folders = fs
-		.readdirSync(componentsDir, { withFileTypes: true })
-		.filter((dirent) => dirent.isDirectory())
-		.map((dirent) => dirent.name);
-
-	for (const folder of folders) {
-		const tsxFile = join(componentsDir, folder, `${folder}.tsx`);
-		const tsFile = join(componentsDir, folder, `${folder}.ts`);
-
-		if (fs.existsSync(tsxFile)) {
-			entries[`${folder}/${folder}`] = tsxFile;
-		} else if (fs.existsSync(tsFile)) {
-			entries[`${folder}/${folder}`] = tsFile;
-		}
-	}
-
-	return entries;
-}
+import dts from "vite-plugin-dts"
 
 export default defineConfig({
 	plugins: [
-		react({
+    react({
+      // Указываем, что используем стандартный React JSX
 			jsxImportSource: "react",
-		}),
-		libInjectCss(),
-		dts({
-			// <-- Добавьте плагин dts
-			insertTypesEntry: true, // Генерирует файл `index.d.ts` в корне сборки
-			rollupTypes: false, // Объединяет типы в один файл (опционально)
-			include: ["src/components/*"], // Где искать файлы для генерации типов
-			exclude: ["**/*.stories.tsx", "**/*.test.tsx"], // Исключить ненужные файлы
-		}),
+    }),
+
+    // Инжектит CSS прямо в JS-бандлы (важно для библиотек)
+    libInjectCss(),
+
+    dts()
 	],
 	build: {
-		lib: {
-			entry: getEntries(),
+    lib: {
+      // Настройки сборки библиотеки
+      entry: {
+        // Главный входной файл
+        index: resolve(__dirname, "src/index.ts"),
+
+        // Отдельный entry для Button
+				"components/Button/Button": resolve(
+					__dirname,
+					"src/components/Button/Button.tsx"
+        ),
+
+        // Отдельный entry для Link
+				"components/Link/Link": resolve(__dirname, "src/components/Link/Link.tsx"),
+      },
+
+      // Собираем только в ES-формате
 			formats: ["es"],
+      fileName: (format, name) => `${name}.js`,
 		},
-		rollupOptions: {
-			external: [
-				"react",
-				"react-dom",
-				"react/jsx-runtime",
-				"@dubium/hooks",
-				"classnames",
-			],
+    rollupOptions: {
+      // Внешние зависимости
+			external: ["react", "react-dom", "react/jsx-runtime"],
 			output: {
-				assetFileNames: (assetInfo) => {
-					if (assetInfo.name?.endsWith(".css")) {
-						// assetInfo.name может быть, например, "Button.css"
-						// Нужно найти папку с таким же именем компонента в dist
-						const baseName = assetInfo.name.replace(/\.css$/, ""); // "Button"
-						// Возвращаем путь как "Button/Button.css" чтобы css лежал рядом с Button.js
-						return `${baseName}/${assetInfo.name}`;
-					}
-					return "[name].js";
-				},
-				chunkFileNames: "[name].js",
+        assetFileNames: () => {
+          return 'components/[name]/[name][extname]';
+        },
+        // Именование чанков
+        chunkFileNames: "[name].js",
+        // Именование entry-файлов
 				entryFileNames: "[name].js",
 			},
-		},
+    },
+    // чтобы обычные (не-модульные) стили выносились отдельно
 		cssCodeSplit: true,
 	},
 });

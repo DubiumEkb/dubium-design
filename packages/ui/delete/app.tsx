@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Image, Input } from "./components";
+import { Button, Image, Input } from "../delete/old_components";
 
 const InputValue = () => {
 	const [value, setValue] = useState<string>("");

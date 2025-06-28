@@ -1,19 +1,19 @@
 declare module "*.module.scss" {
-	const classes: { [key: string]: string };
+	const classes: { readonly [key: string]: string };
 	export default classes;
 }
 
 declare module "*.scss" {
-	const style: { [className: string]: string };
-	export default style;
+	const content: string;
+	export default content;
 }
 
 declare module "*.module.css" {
-	const classes: { [key: string]: string };
+	const classes: { readonly [key: string]: string };
 	export default classes;
 }
 
 declare module "*.css" {
-	const style: { [className: string]: string };
-	export default style;
+	const content: string;
+	export default content;
 }
