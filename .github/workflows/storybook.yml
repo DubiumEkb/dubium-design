@@ -30,7 +30,7 @@ jobs:
 
       - name: Install dependencies
         working-directory: apps/docs
-        run: yarn install --frozen-lockfile --network-timeout 300000
+        run: yarn install --network-timeout 300000
 
       - name: Build Storybook
         working-directory: apps/docs
