@@ -1,4 +1,4 @@
-import { useCallback, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 
 /**
 	* Хук для создания дебаунсированной функции
@@ -14,6 +14,7 @@ import { useCallback, useRef } from "react";
 	* });
 */
 export const useDebounceFn = (delay: number): ((callback: () => void) => void) => {
+	// eslint-disable-next no-undef
 	const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
 	// Очистка при размонтировании
