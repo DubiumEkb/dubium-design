@@ -14,7 +14,7 @@ import { useCallback, useEffect, useRef } from "react";
 	* });
 */
 export const useDebounceFn = (delay: number): ((callback: () => void) => void) => {
-	// eslint-disable-next no-undef
+	// eslint-disable-next-line no-undef
 	const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
 	// Очистка при размонтировании
