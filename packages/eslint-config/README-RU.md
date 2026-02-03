@@ -74,6 +74,45 @@ export default defineConfig([
 ]);
 ```
 
+Или
+
+```js
+import { defineConfig } from "eslint/config"
+import { base } from "@dubium/eslint-config/base"
+import { typescript } from "@dubium/eslint-config/typescript"
+import { react } from "@dubium/eslint-config/react"
+import globals from "globals"
+
+const enhancedTypescript = {
+  ...typescript,
+  languageOptions: {
+    ...typescript.languageOptions,
+    parserOptions: {
+      ...( typescript.languageOptions?.parserOptions || {} ),
+      project: "./tsconfig.json",
+      tsconfigRootDir: process.cwd(),
+      // Support path aliases (@/*)
+      EXPERIMENTAL_useProjectService: true,
+    },
+  },
+}
+
+export default defineConfig([
+  base,
+  enhancedTypescript,
+  react,
+  {
+    languageOptions: {
+      globals: {
+        ...globals.node,
+        ...globals.browser,
+      },
+    },
+  },
+])
+
+```
+
 Можно использовать только нужные конфиги:
 
 ```js

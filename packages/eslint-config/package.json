@@ -1,8 +1,11 @@
 {
 	"name": "@dubium/eslint-config",
 	"private": false,
-	"version": "1.0.10",
+	"version": "1.0.11",
 	"type": "module",
+	"publishConfig": {
+		"access": "public"
+	},
 	"exports": {
 		"./base": "./config/base.js",
 		"./react": "./config/react.js",
@@ -26,7 +29,10 @@
 	"bugs": {
 		"url": "https://github.com/DubiumEkb/dubium-design/issues"
 	},
-	"repository": "https://github.com/DubiumEkb/dubium-design",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/DubiumEkb/dubium-design.git"
+	},
 	"author": "https://github.com/DubiumEkb",
 	"license": "MIT",
 	"scripts": {
