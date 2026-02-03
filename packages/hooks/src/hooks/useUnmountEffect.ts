@@ -10,9 +10,9 @@ import { useEffect } from "react";
  *
  * @example
  * useUnmountEffect(() => {
- *   console.log('Компонент размонтирован');
- *   clearInterval(timerId);
- * });
+ *   console.log('Компонент размонтирован')
+ *   clearInterval(timerId)
+ * })
  */
 export const useUnmountEffect = (fn: () => void): void => {
 	useEffect(() => {

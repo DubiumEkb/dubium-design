@@ -6,7 +6,6 @@ import {
 	type ReactNode,
 } from "react";
 import style from "./Button.module.scss";
-import classNames from "classnames";
 
 /**
  * Пропсы компонента `Button`.
@@ -88,32 +87,32 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 /**
  * Универсальный компонент кнопки с поддержкой всех стандартных HTML-атрибутов.
  *
- * @component
+ * Компонент `Button` используется для выполнения действий при клике
+ * и поддерживает все стандартные свойства HTML-кнопок.
  *
- * @example
- * ```tsx
- * // Простое использование
- * <Button onClick={() => console.log("Clicked")}>Click me</Button>
+ * **Примеры использования:**
  *
- * // С остановкой всплытия
- * <Button stopPropagation onClick={() => console.log("Clicked")}>
+ * — Простое использование
+ * `<Button onClick={() => console.log("Clicked")}>Click me</Button>`
+ *
+ * — С остановкой всплытия
+ * `<Button stopPropagation onClick={() => console.log("Clicked")}>
  *   Click me (no propagation)
- * </Button>
+ * </Button>`
  *
- * // Отправка формы
- * <Button type="submit">Submit Form</Button>
- * ```
+ * — Отправка формы
+ * `<Button type="submit">Submit Form</Button>`
  *
- * @param {ButtonProps} props - Пропсы компонента.
- * @param {string} [props.className] - Дополнительный CSS-класс.
- * @param {ReactNode} props.children - Контент кнопки.
- * @param {"button" | "submit" | "reset"} [props.type="button"] - Тип кнопки.
- * @param {string} [props.role="button"] - ARIA-роль.
- * @param {boolean} [props.disabled=false] - Отключено ли состояние.
- * @param {boolean} [props.stopPropagation=false] - Остановка всплытия клика.
- * @param {React.MouseEventHandler<HTMLButtonElement>} [props.onClick] - Обработчик клика.
- * @returns {JSX.Element} Компонент кнопки.
+ * **Основные пропсы:**
+ * - `className` — дополнительный CSS-класс.
+ * - `children` — содержимое кнопки.
+ * - `type` — тип кнопки (`"button" | "submit" | "reset"`). По умолчанию `"button"`.
+ * - `role` — ARIA-роль. По умолчанию `"button"`.
+ * - `disabled` — отключает кнопку.
+ * - `stopPropagation` — останавливает всплытие клика.
+ * - `onClick` — обработчик события клика.
  */
+
 export const Button = memo(
 	({
 		className,
@@ -136,7 +135,7 @@ export const Button = memo(
 
 		return (
 			<button
-				className={classNames(style.button, className)}
+				className={`${style.button} ${className}`}
 				type={type}
 				onClick={handleClick}
 				role={role}
