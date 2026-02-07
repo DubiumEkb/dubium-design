@@ -199,6 +199,11 @@
   resolved "https://registry.npmjs.org/@dubium/hooks/-/hooks-0.0.6.tgz#9f2d9283b249fc8bc80a264110cca7d95f4f5bc3"
   integrity sha512-qI34swW3ZpUEga7IKVYcSGr8dsh4hFuNABfGI+4POc9iAI72Vk1MEVr0SltE8quKIBHHWUUd4vVQYPmd5VieGA==
 
+"@dubium/ui@^0.0.20":
+  version "0.0.20"
+  resolved "https://registry.npmjs.org/@dubium/ui/-/ui-0.0.20.tgz#ef2fc7e7dad21ac9f8cf1dfa5289c4f9e0b49aa8"
+  integrity sha512-Lyj7UTTj2w/k7GuvXB3uL+hZskRAXe6iKndxB0BxSLNQtq3YSMxkhCO5yDiYvVRpS/tIu8NmdVl9PKsToYIZkA==
+
 "@esbuild/aix-ppc64@0.25.5":
   version "0.25.5"
   resolved "https://registry.npmjs.org/@esbuild/aix-ppc64/-/aix-ppc64-0.25.5.tgz#4e0f91776c2b340e75558f60552195f6fad09f18"
