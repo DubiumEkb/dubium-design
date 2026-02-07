@@ -227,7 +227,7 @@
   version "0.0.6"
   resolved "file:packages/hooks"
 
-"@dubium/ui@file:/home/dubium/projects/projects/project_dubium/packages/ui":
+"@dubium/ui@^0.0.20", "@dubium/ui@file:/home/dubium/projects/projects/project_dubium/packages/ui":
   version "0.0.20"
   resolved "file:packages/ui"
 
@@ -4708,6 +4708,7 @@ totalist@^3.0.0:
   version "0.0.0"
   resolved "file:apps/docs"
   dependencies:
+    "@dubium/hooks" "^0.0.6"
     react "^19.1.0"
     react-dom "^19.1.0"
 
