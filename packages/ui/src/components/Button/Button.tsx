@@ -34,42 +34,6 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 	children: ReactNode;
 
 	/**
-	 * Тип кнопки.
-	 *
-	 * @defaultValue "button"
-	 *
-	 * @example
-	 * ```tsx
-	 * <Button type="submit">Submit</Button>
-	 * ```
-	 */
-	type?: "button" | "submit" | "reset";
-
-	/**
-	 * ARIA-роль кнопки.
-	 *
-	 * @defaultValue "button"
-	 *
-	 * @example
-	 * ```tsx
-	 * <Button role="menuitem">Menu Item</Button>
-	 * ```
-	 */
-	role?: string;
-
-	/**
-	 * Отключено ли состояние кнопки.
-	 *
-	 * @defaultValue false
-	 *
-	 * @example
-	 * ```tsx
-	 * <Button disabled>Disabled Button</Button>
-	 * ```
-	 */
-	disabled?: boolean;
-
-	/**
 	 * Останавливать ли всплытие события `click`.
 	 *
 	 * @defaultValue false
@@ -118,7 +82,6 @@ export const Button = memo(
 		className,
 		children,
 		type = "button",
-		role = "button",
 		onClick,
 		stopPropagation = false,
 		...props
@@ -128,7 +91,10 @@ export const Button = memo(
 				if (stopPropagation) {
 					event.stopPropagation();
 				}
-				onClick?.(event);
+
+				if (onClick) {
+					onClick(event);
+				}
 			},
 			[onClick, stopPropagation],
 		);
@@ -138,7 +104,6 @@ export const Button = memo(
 				className={`${style.button} ${className}`}
 				type={type}
 				onClick={handleClick}
-				role={role}
 				{...props}
 			>
 				{children}
