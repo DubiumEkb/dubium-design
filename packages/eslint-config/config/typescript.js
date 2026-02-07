@@ -15,12 +15,11 @@ export const typescript = {
 	},
 
 	rules: {
-		/**
-		 * Запрещает объявление неиспользуемых переменных
-		 * Disallows unused variables
-		 * Ссылка: https://eslint.org/docs/latest/rules/no-unused-vars
-		 */
+		// Отключаем базовые ESLint правила в пользу TypeScript
 		"no-unused-vars": "off",
+		"no-duplicate-imports": "off",
+
+		// TypeScript правила
 		"@typescript-eslint/no-explicit-any": "warn",
 		"@typescript-eslint/consistent-type-imports": "error",
 		"@typescript-eslint/no-unused-vars": [ "warn" ],
@@ -30,30 +29,27 @@ export const typescript = {
 		"@typescript-eslint/no-unsafe-member-access": "error",
 		"@typescript-eslint/require-await": "warn",
 		"@typescript-eslint/await-thenable": "warn",
-		"@typescript-eslint/no-indexed-access-type": "error",
 
-		// Дополнительные правила для чистоты типов:
-		"@typescript-eslint/no-type-alias": [
-			"error",
-			{
-				"allowAliases": "in-unions-and-intersections",
-				"allowCallbacks": "always",
-				"allowConditionalTypes": "always",
-				"allowConstructors": "never",
-				"allowLiterals": "in-unions-and-intersections",
-				"allowMappedTypes": "always",
-				"allowTupleTypes": "always",
-				"allowGenerics": "always"
-			}
-		],
+		// Вместо удалённого no-indexed-access-type используйте:
+		"@typescript-eslint/consistent-indexed-object-style": [ "error", "record" ],
 
-		// Запрещает сложные utility types
-		"@typescript-eslint/no-unnecessary-type-parameters": "error",
-
-		// Требует явных типов вместо infer
 		"@typescript-eslint/no-inferrable-types": "error",
-
-		// Запрещает unsafe keyof
 		"@typescript-eslint/no-unsafe-declaration-merging": "error",
-	},
+
+		// Дополнительные полезные правила:
+		"@typescript-eslint/no-unnecessary-type-constraint": "error",
+		"@typescript-eslint/no-unnecessary-condition": "warn",
+		"@typescript-eslint/no-unnecessary-boolean-literal-compare": "error",
+		"@typescript-eslint/prefer-nullish-coalescing": "warn",
+		"@typescript-eslint/prefer-optional-chain": "warn",
+
+		// Безопасность типов
+		"@typescript-eslint/no-unsafe-return": "error",
+		"@typescript-eslint/no-unsafe-enum-comparison": "error",
+
+		// Чистота кода
+		"@typescript-eslint/prefer-as-const": "error",
+		"@typescript-eslint/no-base-to-string": "error",
+		"@typescript-eslint/no-confusing-void-expression": "error",
+	}
 }

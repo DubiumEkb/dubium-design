@@ -130,7 +130,7 @@ export const Button = memo(
 				}
 				onClick?.(event);
 			},
-			[onClick, stopPropagation]
+			[onClick, stopPropagation],
 		);
 
 		return (
@@ -144,7 +144,7 @@ export const Button = memo(
 				{children}
 			</button>
 		);
-	}
+	},
 );
 
 Button.displayName = "Button";

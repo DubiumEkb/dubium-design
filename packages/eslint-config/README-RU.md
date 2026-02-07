@@ -14,9 +14,9 @@
 ### 🔹 Базовая конфигурация (`base`)
 
 ```bash
-npm install -D eslint @dubium/eslint-config
+npm install -D eslint @eslint/js globals @dubium/eslint-config
 # или
-yarn add -D eslint @dubium/eslint-config
+yarn add -D eslint @eslint/js globals @dubium/eslint-config
 ```
 
 <sub>Также рекомендуется установить `globals`, если используется в `.eslintrc`.</sub>
@@ -26,9 +26,9 @@ yarn add -D eslint @dubium/eslint-config
 ### 🔹 TypeScript (`typescript`)
 
 ```bash
-npm install -D @typescript-eslint/parser @typescript-eslint/eslint-plugin
+npm install -D typescript-eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin
 # или
-yarn add -D @typescript-eslint/parser @typescript-eslint/eslint-plugin
+yarn add -D typescript-eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin
 ```
 
 ---
@@ -53,28 +53,19 @@ yarn add -D eslint-plugin-jsx-a11y
 
 ---
 
+### 🔹 Prettier
+
+```bash
+npm install -D prettier eslint-config-prettier eslint-plugin-prettier
+# or
+yarn add -D prettier eslint-config-prettier eslint-plugin-prettier
+```
+
+---
+
 ## ⚙️ Использование
 
 Создай файл `eslint.config.js`:
-
-```js
-import { defineConfig } from "eslint/config";
-import {
-  base,
-  typescript,
-  react,
-  jsxA11y,
-} from "@dubium/eslint-config";
-
-export default defineConfig([
-  base,
-  typescript,
-  react,
-  jsxA11y,
-]);
-```
-
-Или
 
 ```js
 import { defineConfig } from "eslint/config"
@@ -82,7 +73,10 @@ import { base } from "@dubium/eslint-config/base"
 import { typescript } from "@dubium/eslint-config/typescript"
 import { react } from "@dubium/eslint-config/react"
 import globals from "globals"
+import prettier from "eslint-config-prettier"
+import eslintPluginPrettier from "eslint-plugin-prettier"
 
+// Модифицируем typescript конфиг для поддержки type-aware правил
 const enhancedTypescript = {
   ...typescript,
   languageOptions: {
@@ -91,17 +85,23 @@ const enhancedTypescript = {
       ...( typescript.languageOptions?.parserOptions || {} ),
       project: "./tsconfig.json",
       tsconfigRootDir: process.cwd(),
-      // Support path aliases (@/*)
+      // Для поддержки path aliases (@/*)
       EXPERIMENTAL_useProjectService: true,
     },
   },
 }
 
-export default defineConfig([
+export default defineConfig( [
   base,
   enhancedTypescript,
   react,
   {
+    plugins: {
+      prettier: eslintPluginPrettier,
+    },
+    rules: {
+      "prettier/prettier": "error",
+    },
     languageOptions: {
       globals: {
         ...globals.node,
@@ -109,7 +109,16 @@ export default defineConfig([
       },
     },
   },
-])
+  prettier,
+  {
+    files: [ "**/*.schema.ts" ],
+    rules: {
+      "@typescript-eslint/no-unsafe-call": "off",
+      "@typescript-eslint/no-unsafe-assignment": "off"
+    }
+  }
+] )
+
 
 ```
 
