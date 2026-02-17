@@ -1,78 +1,72 @@
 {
-  "name": "@dubium/ui",
-  "private": false,
-  "version": "0.0.23",
-  "type": "module",
-  "homepage": "https://dubiumekb.github.io/dubium-design/",
-  "bugs": {
-    "url": "https://github.com/DubiumEkb/dubium-design/issues"
-  },
-  "repository": "https://github.com/DubiumEkb/dubium-design",
-  "files": [
-    "dist",
-    "README.md",
-    "LICENSE"
-  ],
-  "description": "A lightweight and customizable UI component library for React, designed to streamline the development of modern web applications. @dubium/ui includes an array of responsive, accessible, and reusable UI components, optimized for performance and ease of use.",
-  "keywords": [
-    "react",
-    "ui",
-    "components",
-    "design-system",
-    "library",
-    "frontend"
-  ],
-  "author": "https://github.com/DubiumEkb",
-  "license": "MIT",
-  "sideEffects": false,
-  "scripts": {
-    "clean:dist": "rimraf dist",
-    "dev": "vite",
-    "dev:ui": "yarn run dev",
-    "build:ts": "tsc -b",
-    "generate:exports": "node node_script/generate-exports.mjs",
-    "build": "yarn clean:dist && vite build && yarn generate:exports",
-    "build:del": "yarn clean:dist && vite build",
-    "lint": "eslint .",
-    "preview": "vite preview",
-    "version:push": "yarn publish --access=public",
-    "version:patch": "yarn version patch",
-    "version:minor": "yarn version minor",
-    "version:major": "yarn version major"
-  },
-  "peerDependencies": {
-    "@dubium/hooks": "^0.0.6",
-    "react": " ^18.0.0 || ^19.0.0",
-    "react-dom": "^18.0.0 || ^19.0.0"
-  },
-  "devDependencies": {
-    "@eslint/js": "^9.27.0",
-    "@types/react": "^19.1.5",
-    "@types/react-dom": "^19.1.5",
-    "@vitejs/plugin-react-swc": "^3.8.1",
-    "eslint": ">=9.27.0",
-    "eslint-plugin-react-hooks": "^5.2.0",
-    "eslint-plugin-react-refresh": "^0.4.20",
-    "globals": "^16.2.0",
-    "prettier": "^3.5.3",
-    "rimraf": "^6.0.1",
-    "rollup-plugin-visualizer": "^6.0.3",
-    "sass": "^1.89.2",
-    "typescript": "^5.8.3",
-    "typescript-eslint": "^8.32.1",
-    "vite": "^6.3.5",
-    "vite-plugin-dts": "^4.5.4",
-    "vite-plugin-lib-inject-css": "^2.2.2"
-  },
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
-    },
-    "./*": {
-      "types": "./dist/components/*/index.d.ts",
-      "import": "./dist/components/*/index.js",
-      "style": "./dist/components/*/*.css"
-    }
-  }
+	"name": "@dubium/ui",
+	"private": false,
+	"version": "0.0.24",
+	"type": "module",
+	"homepage": "https://dubiumekb.github.io/dubium-design/",
+	"bugs": {
+		"url": "https://github.com/DubiumEkb/dubium-design/issues"
+	},
+	"repository": "https://github.com/DubiumEkb/dubium-design",
+	"files": [
+		"dist",
+		"README.md",
+		"LICENSE"
+	],
+	"description": "A lightweight and customizable UI component library for React, designed to streamline the development of modern web applications. @dubium/ui includes an array of responsive, accessible, and reusable UI components, optimized for performance and ease of use.",
+	"keywords": [
+		"react",
+		"ui",
+		"components",
+		"design-system",
+		"library",
+		"frontend"
+	],
+	"author": "https://github.com/DubiumEkb",
+	"license": "MIT",
+	"sideEffects": false,
+	"scripts": {
+		"clean:dist": "rimraf dist",
+		"dev": "vite",
+		"dev:ui": "yarn run dev",
+		"build": "yarn clean:dist && vite build",
+		"lint": "eslint .",
+		"preview": "vite preview",
+		"version:push": "yarn publish --access=public"
+	},
+	"peerDependencies": {
+		"@dubium/hooks": "^0.0.6",
+		"react": " ^18.0.0 || ^19.0.0",
+		"react-dom": "^18.0.0 || ^19.0.0"
+	},
+	"devDependencies": {
+		"@eslint/js": "^9.27.0",
+		"@types/react": "^19.1.5",
+		"@types/react-dom": "^19.1.5",
+		"@vitejs/plugin-react-swc": "^3.8.1",
+		"eslint": ">=9.27.0",
+		"eslint-plugin-react-hooks": "^5.2.0",
+		"eslint-plugin-react-refresh": "^0.4.20",
+		"globals": "^16.2.0",
+		"prettier": "^3.5.3",
+		"rimraf": "^6.0.1",
+		"rollup-plugin-visualizer": "^6.0.3",
+		"sass": "^1.89.2",
+		"typescript": "^5.8.3",
+		"typescript-eslint": "^8.32.1",
+		"vite": "^6.3.5",
+		"vite-plugin-dts": "^4.5.4",
+		"vite-plugin-lib-inject-css": "^2.2.2"
+	},
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.js"
+		},
+		"./*": {
+			"types": "./dist/components/*/index.d.ts",
+			"import": "./dist/components/*/index.js",
+			"style": "./dist/components/*/*.css"
+		}
+	}
 }
