@@ -8,7 +8,7 @@ type IconModule = {
 
 export const iconPaths: Record<IconName, () => Promise<IconModule>> = {
 	Close: () =>
-		import("./collection/CloseIcon").then((module) => ({
+		import("../../icons/CloseIcon").then((module) => ({
 			default: module.CloseIcon,
 		})),
 } as const;

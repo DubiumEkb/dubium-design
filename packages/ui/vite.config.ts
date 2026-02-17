@@ -4,7 +4,7 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 
 // Для работы с путями
-import { resolve } from "path";
+import { resolve } from "node:path";
 
 import { visualizer } from "rollup-plugin-visualizer";
 
@@ -12,6 +12,34 @@ import { visualizer } from "rollup-plugin-visualizer";
 import { libInjectCss } from "vite-plugin-lib-inject-css";
 
 import dts from "vite-plugin-dts";
+
+import fs from "node:fs";
+
+// Функция для автоматического сбора entry points
+function getComponentEntries() {
+	const componentsDir = resolve(__dirname, "src/components");
+	const entries: Record<string, string> = {};
+
+	// Читаем директорию компонентов
+	const componentDirs = fs
+		.readdirSync(componentsDir, { withFileTypes: true })
+		.filter((dirent) => dirent.isDirectory())
+		.map((dirent) => dirent.name);
+
+	// Для каждого компонента создаем entry point
+	componentDirs.forEach((componentName) => {
+		const componentPath = `src/components/${componentName}/${componentName}.tsx`;
+		// Проверяем существование файла компонента
+		if (fs.existsSync(resolve(__dirname, componentPath))) {
+			entries[`components/${componentName}/${componentName}`] = resolve(
+				__dirname,
+				componentPath,
+			);
+		}
+	});
+
+	return entries;
+}
 
 export default defineConfig({
 	plugins: [
@@ -25,7 +53,9 @@ export default defineConfig({
 		// Инжектит CSS прямо в JS-бандлы (важно для библиотек)
 		libInjectCss(),
 
-		dts(),
+		dts({
+			exclude: ["src/main.tsx", "src/dev"],
+		}),
 	],
 	build: {
 		lib: {
@@ -33,53 +63,13 @@ export default defineConfig({
 			entry: {
 				// Главный входной файл
 				index: resolve(__dirname, "src/index.ts"),
-
-				// Отдельный entry для Button
-				"components/Button/Button": resolve(
-					__dirname,
-					"src/components/Button/Button.tsx",
-				),
-
-				// Отдельный entry для Icon
-				"components/Icon/Icon": resolve(
-					__dirname,
-					"src/components/Icon/Icon.tsx",
-				),
-
-				// Отдельный entry для Image
-				"components/Image/Image": resolve(
-					__dirname,
-					"src/components/Image/Image.tsx",
-				),
-
-				// Отдельный entry для Input
-				"components/Input/Input": resolve(
-					__dirname,
-					"src/components/Input/Input.tsx",
-				),
-
-				// Отдельный entry для Portal
-				"components/Portal/Portal": resolve(
-					__dirname,
-					"src/components/Portal/Portal.tsx",
-				),
-
-				// Отдельный entry для Tabs
-				"components/Tabs/Tabs": resolve(
-					__dirname,
-					"src/components/Tabs/Tabs.tsx",
-				),
-
-				// Отдельный entry для TextArea
-				"components/TextArea/TextArea": resolve(
-					__dirname,
-					"src/components/TextArea/TextArea.tsx",
-				),
+				// Автоматически добавляем entry points для всех компонентов
+				...getComponentEntries(),
 			},
 
 			// Собираем только в ES-формате
 			formats: ["es"],
-			fileName: (format, name) => `${name}.js`,
+			fileName: (_, name) => `${name}.js`,
 		},
 		rollupOptions: {
 			// Внешние зависимости
@@ -89,9 +79,15 @@ export default defineConfig({
 					return "components/[name]/[name][extname]";
 				},
 				// Именование чанков
-				chunkFileNames: "[name].js",
-				// Именование entry-файлов
-				entryFileNames: "[name].js",
+				chunkFileNames: (chunkInfo) => {
+					// Проверяем, является ли чанк иконкой
+					if (chunkInfo.name.match(/.*Icon$/)) {
+						// Сохраняем иконки в подкаталог icons
+						return "icons/[name].js";
+					}
+					// Для остальных чанков используем стандартное именование
+					return "[name].js";
+				},
 			},
 		},
 		// чтобы обычные (не-модульные) стили выносились отдельно
