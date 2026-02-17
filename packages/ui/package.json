@@ -1,9 +1,9 @@
 {
   "name": "@dubium/ui",
   "private": false,
-  "version": "0.0.20",
+  "version": "0.0.21",
   "type": "module",
-  "homepage": "https://github.com/DubiumEkb/dubium-design/",
+  "homepage": "https://dubiumekb.github.io/dubium-design/",
   "bugs": {
     "url": "https://github.com/DubiumEkb/dubium-design/issues"
   },

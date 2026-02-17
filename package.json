@@ -1,46 +1,46 @@
 {
-  "name": "dubium_design",
-  "private": true,
-  "version": "0.0.5",
-  "homepage": "https://dubiumekb.github.io/DubiumUI/",
-  "bugs": {
-    "url": "https://github.com/DubiumEkb/dubium-design/issues"
-  },
-  "repository": "https://github.com/DubiumEkb/dubium-design",
-  "description": "A lightweight and customizable UI component library for React, designed to streamline the development of modern web applications. @dubium/ui includes an array of responsive, accessible, and reusable UI components, optimized for performance and ease of use.",
-  "keywords": [
-    "react",
-    "ui",
-    "components",
-    "design-system",
-    "library",
-    "frontend"
-  ],
-  "author": "https://github.com/DubiumEkb",
-  "license": "MIT",
-  "scripts": {
-    "build": "turbo build",
-    "dev": "turbo dev",
-    "lint": "turbo lint",
-    "fixed_version_pack": "npx syncpack fix-mismatches",
-    "version:patch": "yarn version patch",
-    "version:minor": "yarn version minor",
-    "version:major": "yarn version major"
-  },
-  "devDependencies": {
-    "@types/node": "^22.15.21",
-    "syncpack": "^13.0.3",
-    "turbo": "^2.8.3"
-  },
-  "engines": {
-    "node": ">=18"
-  },
-  "packageManager": "yarn@1.22.22",
-  "workspaces": [
-    "./apps/*",
-    "./packages/*"
-  ],
-  "dependencies": {
-    "framer-motion": "^12.12.2"
-  }
+	"name": "dubium_design",
+	"private": true,
+	"version": "0.0.5",
+	"homepage": "https://dubiumekb.github.io/dubium-design/",
+	"bugs": {
+		"url": "https://github.com/DubiumEkb/dubium-design/issues"
+	},
+	"repository": "https://github.com/DubiumEkb/dubium-design",
+	"description": "A lightweight and customizable UI component library for React, designed to streamline the development of modern web applications. @dubium/ui includes an array of responsive, accessible, and reusable UI components, optimized for performance and ease of use.",
+	"keywords": [
+		"react",
+		"ui",
+		"components",
+		"design-system",
+		"library",
+		"frontend"
+	],
+	"author": "https://github.com/DubiumEkb",
+	"license": "MIT",
+	"scripts": {
+		"build": "turbo build",
+		"dev": "turbo dev",
+		"lint": "turbo lint",
+		"fixed_version_pack": "npx syncpack fix-mismatches",
+		"version:patch": "yarn version patch",
+		"version:minor": "yarn version minor",
+		"version:major": "yarn version major"
+	},
+	"devDependencies": {
+		"@types/node": "^22.15.21",
+		"syncpack": "^13.0.3",
+		"turbo": "^2.8.3"
+	},
+	"engines": {
+		"node": ">=18"
+	},
+	"packageManager": "yarn@1.22.22",
+	"workspaces": [
+		"./apps/*",
+		"./packages/*"
+	],
+	"dependencies": {
+		"framer-motion": "^12.12.2"
+	}
 }
