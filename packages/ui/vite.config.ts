@@ -37,18 +37,43 @@ export default defineConfig({
 				// Отдельный entry для Button
 				"components/Button/Button": resolve(
 					__dirname,
-					"src/components/Button/Button.tsx"
+					"src/components/Button/Button.tsx",
 				),
 
-				// Отдельный entry для Link
-				"components/Link/Link": resolve(
+				// Отдельный entry для Icon
+				"components/Icon/Icon": resolve(
 					__dirname,
-					"src/components/Link/Link.tsx"
+					"src/components/Icon/Icon.tsx",
 				),
 
-				"components/Header/Header": resolve(
+				// Отдельный entry для Image
+				"components/Image/Image": resolve(
 					__dirname,
-					"src/components/Header/Header.tsx"
+					"src/components/Image/Image.tsx",
+				),
+
+				// Отдельный entry для Input
+				"components/Input/Input": resolve(
+					__dirname,
+					"src/components/Input/Input.tsx",
+				),
+
+				// Отдельный entry для Portal
+				"components/Portal/Portal": resolve(
+					__dirname,
+					"src/components/Portal/Portal.tsx",
+				),
+
+				// Отдельный entry для Tabs
+				"components/Tabs/Tabs": resolve(
+					__dirname,
+					"src/components/Tabs/Tabs.tsx",
+				),
+
+				// Отдельный entry для TextArea
+				"components/TextArea/TextArea": resolve(
+					__dirname,
+					"src/components/TextArea/TextArea.tsx",
 				),
 			},
 

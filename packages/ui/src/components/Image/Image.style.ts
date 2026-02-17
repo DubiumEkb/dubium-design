@@ -1,4 +1,4 @@
-import { CSSProperties } from "react";
+import type { CSSProperties } from "react";
 
 /**
  * Вычисляет и возвращает стиль контейнера изображения с учётом ширины, высоты, соотношения сторон и пользовательских стилей.
@@ -18,7 +18,7 @@ export const getContainerStyle = (
 	width: string | number,
 	height: string | number,
 	aspectRatio: string,
-	customStyle?: CSSProperties
+	customStyle?: CSSProperties,
 ): CSSProperties => {
 	let finalWidth = typeof width === "number" ? `${width}px` : width;
 	let finalHeight = typeof height === "number" ? `${height}px` : height;
@@ -66,7 +66,7 @@ export const getImageStyle = (
 	widthRatio: string | number,
 	heightRatio: string | number,
 	objectFit: CSSProperties["objectFit"],
-	objectPosition: CSSProperties["objectPosition"]
+	objectPosition: CSSProperties["objectPosition"],
 ): CSSProperties => {
 	return {
 		aspectRatio:
