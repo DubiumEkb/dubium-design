@@ -22,10 +22,7 @@
 		"build": "turbo build",
 		"dev": "turbo dev",
 		"lint": "turbo lint",
-		"fixed_version_pack": "npx syncpack fix-mismatches",
-		"version:patch": "yarn version patch",
-		"version:minor": "yarn version minor",
-		"version:major": "yarn version major"
+		"fixed_version_pack": "npx syncpack fix-mismatches"
 	},
 	"devDependencies": {
 		"@types/node": "^22.15.21",
@@ -35,7 +32,7 @@
 	"engines": {
 		"node": ">=18"
 	},
-	"packageManager": "yarn@1.22.22",
+	"packageManager": "npm@11.9.0",
 	"workspaces": [
 		"./apps/*",
 		"./packages/*"

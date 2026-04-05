@@ -65,7 +65,7 @@ yarn add -D prettier eslint-config-prettier eslint-plugin-prettier
 
 ## ⚙️ Usage
 
-Create an `eslint.config.js` file:
+Create an `eslint.config.cjs` file:
 
 ```js
 import { defineConfig } from "eslint/config"
@@ -120,6 +120,67 @@ export default defineConfig( [
 ] )
 
 
+```
+
+### Or Example for Nestjs
+
+```js
+import { defineConfig } from "eslint/config"
+import { base } from "@dubium/eslint-config/base"
+import { typescript } from "@dubium/eslint-config/typescript"
+import globals from "globals"
+import prettier from "eslint-config-prettier"
+import eslintPluginPrettier from "eslint-plugin-prettier"
+
+// Модифицируем typescript конфиг для поддержки type-aware правил
+const enhancedTypescript = {
+	...typescript,
+	languageOptions: {
+		...typescript.languageOptions,
+		parserOptions: {
+			...(typescript.languageOptions?.parserOptions || {}),
+			project: "./tsconfig.json",
+			tsconfigRootDir: process.cwd(),
+			// Для поддержки path aliases (@/*)
+			EXPERIMENTAL_useProjectService: true,
+		},
+	},
+}
+
+export default defineConfig([
+	base,
+	enhancedTypescript,
+	{
+		plugins: {
+			prettier: eslintPluginPrettier,
+		},
+		rules: {
+			"prettier/prettier": "error",
+		},
+		languageOptions: {
+			globals: {
+				...globals.node,
+				...globals.jest,
+			},
+		},
+	},
+	prettier,
+	{
+		rules: {
+			"@typescript-eslint/no-unsafe-call": "off",
+			"@typescript-eslint/no-unsafe-assignment": "off",
+			"new-cap": [
+				"error",
+				{
+					capIsNew: false,
+					newIsCap: false,
+					properties: true,
+				},
+			],
+			"class-methods-use-this": "off",
+		},
+	},
+])
 ```
 
 You can also use only the configs you need:

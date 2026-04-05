@@ -28,11 +28,11 @@
 	"scripts": {
 		"clean:dist": "rimraf dist",
 		"dev": "vite",
-		"dev:ui": "yarn run dev",
-		"build": "yarn clean:dist && vite build",
+		"dev:ui": "npm run dev",
+		"build": "npm clean:dist && vite build",
 		"lint": "eslint .",
-		"preview": "vite preview",
-		"version:push": "yarn publish --access=public"
+		"preview": "npm preview",
+		"version:push": "npm publish --access=public"
 	},
 	"peerDependencies": {
 		"@dubium/hooks": "^0.0.6",

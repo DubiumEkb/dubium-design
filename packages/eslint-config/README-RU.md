@@ -118,8 +118,67 @@ export default defineConfig( [
     }
   }
 ] )
+```
 
+### Или пример для Nestjs
 
+```js
+import { defineConfig } from "eslint/config"
+import { base } from "@dubium/eslint-config/base"
+import { typescript } from "@dubium/eslint-config/typescript"
+import globals from "globals"
+import prettier from "eslint-config-prettier"
+import eslintPluginPrettier from "eslint-plugin-prettier"
+
+// Модифицируем typescript конфиг для поддержки type-aware правил
+const enhancedTypescript = {
+	...typescript,
+	languageOptions: {
+		...typescript.languageOptions,
+		parserOptions: {
+			...(typescript.languageOptions?.parserOptions || {}),
+			project: "./tsconfig.json",
+			tsconfigRootDir: process.cwd(),
+			// Для поддержки path aliases (@/*)
+			EXPERIMENTAL_useProjectService: true,
+		},
+	},
+}
+
+export default defineConfig([
+	base,
+	enhancedTypescript,
+	{
+		plugins: {
+			prettier: eslintPluginPrettier,
+		},
+		rules: {
+			"prettier/prettier": "error",
+		},
+		languageOptions: {
+			globals: {
+				...globals.node,
+				...globals.jest,
+			},
+		},
+	},
+	prettier,
+	{
+		rules: {
+			"@typescript-eslint/no-unsafe-call": "off",
+			"@typescript-eslint/no-unsafe-assignment": "off",
+			"new-cap": [
+				"error",
+				{
+					capIsNew: false,
+					newIsCap: false,
+					properties: true,
+				},
+			],
+			"class-methods-use-this": "off",
+		},
+	},
+])
 ```
 
 Можно использовать только нужные конфиги:
